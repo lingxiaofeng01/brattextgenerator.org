@@ -77,7 +77,7 @@ function init() {
     
     // 获取DOM元素
     initDOMElements();
-    
+        
     // 验证核心元素是否存在
     if (!textInput || !textPreview || !previewPanel) {
         console.error('关键DOM元素未找到，无法初始化');
@@ -109,7 +109,7 @@ function init() {
         // 设置初始化标志
         isInitialized = true;
     });
-
+        
     // 预加载html2canvas以备导出功能使用
     if ('IntersectionObserver' in window) {
         // 使用交叉观察器延迟加载html2canvas
@@ -122,7 +122,7 @@ function init() {
                 }
             });
         }, {rootMargin: '200px'});
-        
+    
         if (exportSection) observer.observe(exportSection);
     } else {
         // 如果不支持交叉观察器，在页面空闲时加载
@@ -130,8 +130,8 @@ function init() {
             setTimeout(loadHtml2Canvas, 2000);
         });
     }
-}
-
+    }
+    
 // 延迟加载html2canvas库
 function loadHtml2Canvas() {
     if (html2canvasLoaded) return;
@@ -167,12 +167,12 @@ function bindEventListeners() {
     if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
     if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
     if (zoomResetBtn) zoomResetBtn.addEventListener('click', resetZoom);
-    
+        
     // 绑定下载按钮事件
     if (downloadPngButton) downloadPngButton.addEventListener('click', () => downloadImage('png'));
     if (downloadJpgButton) downloadJpgButton.addEventListener('click', () => downloadImage('jpg'));
     if (downloadSvgButton) downloadSvgButton.addEventListener('click', () => downloadImage('svg'));
-    
+        
     // 重置按钮事件
     if (resetButton) resetButton.addEventListener('click', resetSettings);
 }
@@ -184,7 +184,7 @@ function handleControlsInput(e) {
     if (target === fontSizeSlider) {
         currentSettings.fontSize = parseInt(target.value);
         requestAnimationFrame(updatePreview);
-    }
+}
     else if (target === textColorPicker) {
         currentSettings.textColor = target.value;
         requestAnimationFrame(updatePreview);
@@ -302,12 +302,12 @@ const updatePreview = debounce(function() {
             width: `${currentSettings.canvasWidth}px`,
             height: `${currentSettings.canvasHeight}px`
         });
-        
+    
         // 应用缩放
-        const scale = zoomLevel / 100;
+    const scale = zoomLevel / 100;
         if (previewWrapper) previewWrapper.style.transform = `scale(${scale})`;
-        
-        // 更新显示值
+    
+    // 更新显示值
         if (fontSizeValue) fontSizeValue.textContent = `${currentSettings.fontSize}px`;
         if (blurEffectValue) blurEffectValue.textContent = `${currentSettings.blurEffect}px`;
         if (borderRadiusValue) borderRadiusValue.textContent = `${currentSettings.borderRadius}px`;
@@ -322,7 +322,7 @@ function setTextAlign(align) {
     updateAlignButtons(align);
     requestAnimationFrame(updatePreview);
 }
-
+    
 // 更新对齐按钮状态
 function updateAlignButtons(align) {
     if (!alignLeftBtn || !alignCenterBtn || !alignRightBtn) return;
@@ -437,7 +437,7 @@ function resetSettings() {
         if (canvasWidthInput) canvasWidthInput.value = defaultSettings.canvasWidth;
         if (canvasHeightInput) canvasHeightInput.value = defaultSettings.canvasHeight;
         if (textShadowSlider) textShadowSlider.value = defaultSettings.textShadow;
-        
+    
         // 重置按钮状态
         updateAlignButtons(defaultSettings.textAlign);
         updateButtonState(textMirrorBtn, false);
@@ -473,7 +473,7 @@ function downloadImage(format = 'png') {
         } catch (error) {
             console.error('SVG导出失败:', error);
             alert('SVG导出失败，请尝试其他格式。');
-        }
+            }
         return;
     }
     
@@ -499,10 +499,10 @@ function downloadImage(format = 'png') {
             };
             document.head.appendChild(script);
         }
-    } else {
+        } else {
         processCanvasExport();
-    }
-    
+        }
+        
     // 处理Canvas导出
     function processCanvasExport() {
         if (!previewPanel) return;
@@ -519,10 +519,10 @@ function downloadImage(format = 'png') {
             let dataURL;
             if (format === 'jpg') {
                 dataURL = canvas.toDataURL('image/jpeg', 0.9);
-            } else {
+                } else {
                 dataURL = canvas.toDataURL('image/png');
-            }
-            
+        }
+        
             downloadFile(dataURL, `brat-text.${format}`);
         }).catch(error => {
             console.error('画布渲染失败:', error);
@@ -542,7 +542,7 @@ function downloadFile(url, filename) {
     
     // 清理DOM
     setTimeout(() => {
-        document.body.removeChild(downloadLink);
+    document.body.removeChild(downloadLink);
     }, 100);
 }
 
@@ -574,12 +574,12 @@ function createSVG() {
     
     // 创建SVG内容 - 使用模板字符串增强可读性和性能
     return `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <filter id="blur">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="${blur}" />
-        </filter>
-    </defs>
+        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="blur">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="${blur}" />
+                </filter>
+            </defs>
     <rect width="100%" height="100%" fill="${bgColor}" rx="${borderRadius}" ry="${borderRadius}" />
     <text 
         x="${x}" 
@@ -591,7 +591,7 @@ function createSVG() {
         ${blur > 0 ? 'filter="url(#blur)"' : ''}
         ${currentSettings.textShadow > 0 ? `style="filter: drop-shadow(0 0 ${currentSettings.textShadow}px ${textColor});"` : ''}
     >${text}</text>
-</svg>`;
+        </svg>`;
 }
 
 // 导航和FAQ功能初始化 - 延迟初始化非关键UI功能
@@ -605,9 +605,9 @@ function initUI() {
                 const item = question.parentElement;
                 if (item) item.classList.toggle('active');
             }
-        });
-    }
-    
+    });
+}
+
     // 初始化移动导航菜单
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -638,6 +638,41 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 延迟初始化次要UI功能
     initSecondaryFeatures();
+    
+    // 初始化移动优化
+    optimizeForMobile();
+    
+    // 监听窗口调整大小
+    window.addEventListener('resize', debounce(function() {
+        optimizeForMobile();
+    }, 250));
+    
+    // 移动端菜单切换
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('show');
+        });
+        
+        // 点击导航链接时关闭菜单
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                navLinks.classList.remove('show');
+            }
+        });
+    }
 });
 
 // 添加资源预加载提示
@@ -647,4 +682,83 @@ if (document.currentScript) {
     link.as = 'script';
     link.href = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
     document.head.appendChild(link);
+}
+
+// 添加快速响应触摸事件处理
+function enhanceMobileTouchResponse() {
+    // 获取所有可交互元素
+    const interactiveElements = document.querySelectorAll('button, a, input, select, .control-option, .color-option');
+    
+    // 添加触摸反馈
+    interactiveElements.forEach(element => {
+        // 添加触摸开始时的视觉反馈
+        element.addEventListener('touchstart', function(e) {
+            this.classList.add('touch-active');
+        }, {passive: true});
+        
+        // 触摸结束后移除视觉反馈
+        element.addEventListener('touchend', function(e) {
+            this.classList.remove('touch-active');
+        }, {passive: true});
+        
+        // 触摸取消时也移除视觉反馈
+        element.addEventListener('touchcancel', function(e) {
+            this.classList.remove('touch-active');
+        }, {passive: true});
+    });
+    
+    // 优化滚动性能
+    const scrollableElements = document.querySelectorAll('.scrollable');
+    scrollableElements.forEach(el => {
+        el.style.webkitOverflowScrolling = 'touch';
+        el.addEventListener('touchstart', function() {}, {passive: true});
+    });
+}
+
+// 添加移动端性能优化
+function optimizeForMobile() {
+    // 检测是否为移动设备
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // 调整预览容器大小
+        const previewWrapper = document.querySelector('.preview-wrapper');
+        const preview = document.querySelector('.preview');
+        
+        if (previewWrapper && preview) {
+            // 设置预览容器高度适应屏幕宽度
+            const screenWidth = window.innerWidth - 40; // 考虑边距
+            const previewScale = screenWidth / preview.offsetWidth;
+            preview.style.transform = `scale(${previewScale})`;
+            
+            // 调整预览容器高度以适应缩放后的预览
+            const scaledHeight = preview.offsetHeight * previewScale;
+            previewWrapper.style.height = `${scaledHeight}px`;
+        }
+        
+        // 简化动画效果以提高性能
+        document.body.classList.add('mobile-optimized');
+        
+        // 增强触摸响应
+        enhanceMobileTouchResponse();
+        
+        // 减少不必要的计算和重绘
+        if (window.requestIdleCallback) {
+            window.requestIdleCallback(() => {
+                const nonCriticalElements = document.querySelectorAll('.non-critical');
+                nonCriticalElements.forEach(el => {
+                    el.classList.add('deferred-load');
+                });
+            });
+        }
+    } else {
+        // PC端恢复正常显示
+        const preview = document.querySelector('.preview');
+        if (preview) {
+            preview.style.transform = 'none';
+        }
+        
+        // 移除移动优化类
+        document.body.classList.remove('mobile-optimized');
+    }
 } 
