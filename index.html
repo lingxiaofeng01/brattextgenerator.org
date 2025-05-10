@@ -7,6 +7,13 @@
     <meta name="description" content="Generate stylish brat text with our Brat Text Generator. Customize fonts with white text, transparent background, or Charli-inspired styles. Perfect for TikTok bios, social media captions, and aesthetic edits.">
     <meta name="keywords" content="brat text generator, brat generator text, bratgenerator text, brat text generator charli, brat text generator transparent, brat generator white text, brat textgenerator, brat text font generator, text generator brat">
     <link rel="canonical" href="https://www.brattextgenerator.org/">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="logo.png" as="image" fetchpriority="high">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
+    
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -14,13 +21,23 @@
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- 关键CSS -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- 字体延迟加载 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
+    
+    <!-- 图标字体延迟加载 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
+    
+    <!-- 关键内联CSS -->
     <style>
-        /* 内联样式确保导航可见 */
+        /* 内联导航样式以减少关键渲染路径阻塞 */
         .main-nav {
             display: block !important;
             visibility: visible !important;
@@ -86,61 +103,79 @@
                 display: block !important;
             }
         }
+        
+        /* 关键头部和预览区样式 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        header {
+            padding-top: 80px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .controls {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #8AE403;
+            width: 594px;
+            height: 594px;
+            margin: 0 auto;
+            position: relative;
+        }
     </style>
-    <!-- 添加顶部导航栏保持可见的脚本 -->
+    
+    <!-- 优化导航脚本 -->
     <script>
-        // 在页面加载前执行，确保导航栏元素在DOM加载前就可见
-        (function() {
-            // 创建一个立即执行函数来确保导航栏可见
-            function ensureNavVisible() {
-                // 获取导航栏元素
+        // 使用requestAnimationFrame优化DOM操作
+        function ensureNavVisible() {
+            requestAnimationFrame(function() {
                 var nav = document.querySelector('.main-nav');
                 if (nav) {
-                    // 强制设置为可见
                     nav.style.display = 'block';
                     nav.style.visibility = 'visible';
                     nav.style.opacity = '1';
-                } else {
-                    // 如果元素还没加载，延迟执行
-                    setTimeout(ensureNavVisible, 10);
                 }
-            }
+            });
+        }
+        
+        // 使用passive事件监听器提高滚动性能
+        document.addEventListener('DOMContentLoaded', function() {
+            ensureNavVisible();
+            setTimeout(ensureNavVisible, 100);
             
-            // 多次尝试确保导航栏可见
-            document.addEventListener('DOMContentLoaded', function() {
-                ensureNavVisible();
-                setTimeout(ensureNavVisible, 100);
-                setTimeout(ensureNavVisible, 500);
-                
-                // 监听样式变化
-                var observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if (mutation.attributeName === 'style' || 
-                            mutation.attributeName === 'class' ||
-                            mutation.type === 'childList') {
+            // 初始化导航栏观察
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (!entry.isIntersecting) {
                             ensureNavVisible();
                         }
                     });
                 });
                 
-                // 开始观察导航栏
                 var nav = document.querySelector('.main-nav');
-                if (nav) {
-                    observer.observe(nav, { 
-                        attributes: true, 
-                        childList: true,
-                        subtree: true,
-                        attributeFilter: ['style', 'class']
-                    });
-                }
-                
-                // 监听window的load事件
-                window.addEventListener('load', ensureNavVisible);
-            });
+                if (nav) observer.observe(nav);
+            }
             
-            // 初始尝试
-            ensureNavVisible();
-        })();
+            // 监听scroll和resize事件使用passive参数提高性能
+            window.addEventListener('scroll', ensureNavVisible, {passive: true});
+            window.addEventListener('resize', ensureNavVisible, {passive: true});
+        });
+        
+        // 预初始化导航
+        ensureNavVisible();
     </script>
 </head>
 <body id="top">
@@ -148,8 +183,8 @@
     <nav class="main-nav">
         <div class="nav-container">
             <div class="logo">
-                <a href="/">
-                    <img src="logo.png" alt="Brat Text Generator">
+                <a href="#top">
+                    <img src="logo.png" alt="Brat Text Generator" width="120" height="40" fetchpriority="high">
                 </a>
             </div>
             <div class="nav-links">
@@ -317,7 +352,7 @@
 
         <div class="section-container">
             <!-- How to Use Section -->
-            <section class="how-to-section" id="how-to-use">
+            <section class="how-to-section lazy-section" id="how-to-use" data-lazy-load="true">
                 <h2>How to Use Brat Text Generator</h2>
                 <div class="steps">
                     <div class="step">
@@ -510,7 +545,7 @@
                 <div class="examples-container">
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example1.png" alt="User created 'very brat summer' text design with green background and black font" loading="lazy">
+                            <img src="images/examples/example1.png" alt="User created 'very brat summer' text design with green background and black font" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Summer Theme</h3>
@@ -520,7 +555,7 @@
                     
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example2.png" alt="User created 'aesthetic' text design with pink background and white font with blur effect" loading="lazy">
+                            <img src="images/examples/example2.png" alt="User created 'aesthetic' text design with pink background and white font with blur effect" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Pink Aesthetic</h3>
@@ -530,7 +565,7 @@
                     
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example3.png" alt="User created 'digital future' text design with blue background and glow effect" loading="lazy">
+                            <img src="images/examples/example3.png" alt="User created 'digital future' text design with blue background and glow effect" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Digital Future</h3>
@@ -540,7 +575,7 @@
                     
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example4.png" alt="User created multilingual text design with classic green background" loading="lazy">
+                            <img src="images/examples/example4.png" alt="User created multilingual text design with classic green background" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Multilingual Design</h3>
@@ -639,7 +674,7 @@
         </div>
     </div>
 
-    <!-- 替换为简化版底部导航 -->
+    <!-- 简化底部导航 -->
     <div class="bottom-nav">
         <div class="container">
             <div class="bottom-nav-links">
@@ -652,41 +687,15 @@
         </div>
     </div>
 
-    <!-- 删除底部导航栏的精简脚本 -->
+    <!-- 优化底部脚本：使用Intersection Observer实现懒加载 -->
     <script>
-        // 在DOM加载完成后执行
+        // 页面加载后初始化懒加载
         document.addEventListener('DOMContentLoaded', function() {
-            // 保护顶部导航栏，防止被脚本移除
-            const mainNav = document.querySelector('.main-nav');
-            if (mainNav) {
-                mainNav.dataset.protected = 'true';
-            }
-            
-            // 清理可能存在的底部链接容器
+            // 处理底部导航
             const bottomLinks = document.querySelector('.bottom-nav');
-            if (bottomLinks) {
-                // 检查屏幕宽度，小于768px才显示底部导航
-                if (window.innerWidth > 768) {
-                    bottomLinks.style.display = 'none';
-                }
+            if (bottomLinks && window.innerWidth > 768) {
+                bottomLinks.style.display = 'none';
             }
-            
-            // 移除图片中显示的底部导航栏
-            const fixedBottomBar = document.querySelector('div[style*="position:fixed"][style*="bottom:0"], div[style*="position: fixed"][style*="bottom: 0"]');
-            if (fixedBottomBar && !fixedBottomBar.closest('.main-nav')) {
-                fixedBottomBar.remove();
-            }
-            
-            // 检查独立的红框问题
-            setTimeout(function() {
-                // 查找并移除所有红框元素
-                const redBoxes = document.querySelectorAll('div[style*="border:1px solid red"], div[style*="border: 1px solid red"]');
-                redBoxes.forEach(box => {
-                    if (!box.closest('.main-nav')) {
-                        box.remove();
-                    }
-                });
-            }, 500);
             
             // 确保header元素可见
             const header = document.querySelector('header');
@@ -694,9 +703,57 @@
                 header.style.display = 'block';
                 header.style.visibility = 'visible';
             }
+            
+            // 初始化内容懒加载
+            if ('IntersectionObserver' in window) {
+                const lazySections = document.querySelectorAll('.lazy-section');
+                const lazyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            lazyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {rootMargin: '200px'});
+                
+                lazySections.forEach(section => {
+                    lazyObserver.observe(section);
+                });
+            }
+            
+            // 延迟加载图片
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            if ('loading' in HTMLImageElement.prototype) {
+                // 浏览器支持原生懒加载
+                lazyImages.forEach(img => {
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                });
+            } else {
+                // 回退使用Intersection Observer
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                if (img.dataset.src) {
+                                    img.src = img.dataset.src;
+                                }
+                                imageObserver.unobserve(img);
+                            }
+                        });
+                    });
+                    
+                    lazyImages.forEach(img => {
+                        imageObserver.observe(img);
+                    });
+                }
+            }
         });
     </script>
 
-    <script src="script.js"></script>
+    <!-- 使用defer属性延迟加载主脚本 -->
+    <script src="script.js" defer></script>
 </body>
 </html> 
