@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brat Text Generator | Create Custom Brat Style Text Images Online</title>
+    <meta name="description" content="Free Brat Text Generator inspired by Charli XCX. Create custom brat style text images with transparent, white or colored backgrounds. Generate brat text font designs instantly.">
+    <meta name="keywords" content="brat text generator, brat generator text, bratgenerator text, brat text generator charli, brat text generator transparent, brat generator white text, brat textgenerator, brat text font generator, text generator brat">
+    <link rel="canonical" href="https://www.brattextgenerator.org/">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body id="top">
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#top">
+                    <span class="logo-text">Brat</span>
+                    <span class="logo-accent">Generator</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#how-to-use" class="nav-link">How to Use</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#" class="nav-link nav-highlight">Get Started</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Brat Text Generator</h1>
+            <p class="subtitle">Create custom Brat style text images - Inspired by Charli XCX</p>
+            <div class="seo-description-wrapper">
+                <p class="seo-description">The ultimate free online tool to generate Brat text images with transparent backgrounds, white text options and custom colors. Perfect for social media, profile pictures, and creative designs.</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Left Control Panel -->
+            <div class="left-panel">
+                <div class="controls">
+                    <div class="control-section">
+                        <h2>Text Settings</h2>
+                        <div class="control-group">
+                            <label for="text-input">Enter Text</label>
+                            <textarea id="text-input" placeholder="Enter your text here..." rows="3">input some text to generate your custom brat cover</textarea>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="font-size">Font Size</label>
+                            <div class="slider-container">
+                                <input type="range" id="font-size" min="20" max="200" value="40">
+                                <span id="font-size-value">40px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-shadow">Text Shadow</label>
+                            <div class="slider-container">
+                                <input type="range" id="text-shadow" min="0" max="20" value="0">
+                                <span id="text-shadow-value">0px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-color">Text Color</label>
+                            <input type="color" id="text-color" value="#000000">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-align">Text Alignment</label>
+                            <div class="button-group">
+                                <button id="align-left" title="Align Left"><i class="bi bi-text-left"></i></button>
+                                <button id="align-center" class="active" title="Align Center"><i class="bi bi-text-center"></i></button>
+                                <button id="align-right" title="Align Right"><i class="bi bi-text-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <div class="text-transform-options">
+                                <button id="text-mirror" title="Mirror Horizontally"><i class="bi bi-symmetry-horizontal"></i></button>
+                                <button id="text-flip" title="Flip Vertically"><i class="bi bi-symmetry-vertical"></i></button>
+                                <button id="text-rotate" title="Rotate Text"><i class="bi bi-arrow-clockwise"></i></button>
+                                <button id="text-uppercase" title="Uppercase"><i class="bi bi-type"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h2>Background Settings</h2>
+                        <div class="control-group">
+                            <label for="bg-color">Background Color</label>
+                            <input type="color" id="bg-color" value="#8AE403">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Preset Styles</label>
+                            <div class="preset-container">
+                                <button class="preset preset-green active" title="Classic Green"></button>
+                                <button class="preset preset-white" title="White"></button>
+                                <button class="preset preset-pink" title="Pink"></button>
+                                <button class="preset preset-blue" title="Blue"></button>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="blur-effect">Blur Effect</label>
+                            <div class="slider-container">
+                                <input type="range" id="blur-effect" min="0" max="10" value="1.5" step="0.1">
+                                <span id="blur-effect-value">1.5px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="border-radius">Border Radius</label>
+                            <div class="slider-container">
+                                <input type="range" id="border-radius" min="0" max="50" value="0">
+                                <span id="border-radius-value">0px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="canvas-width">Canvas Size</label>
+                            <div class="size-inputs">
+                                <div class="size-input">
+                                    <span>Width</span>
+                                    <input type="number" id="canvas-width" value="594" min="100" max="2000">
+                                </div>
+                                <div class="size-input">
+                                    <span>Height</span>
+                                    <input type="number" id="canvas-height" value="594" min="100" max="2000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <div class="action-buttons">
+                            <button id="reset-button" class="secondary-button">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Preview and Download Area -->
+            <div class="right-panel">
+                <div class="preview-wrapper">
+                    <div class="preview" id="preview-panel">
+                        <div id="text-preview">input some text to generate your custom brat cover</div>
+                    </div>
+                </div>
+                
+                <div class="preview-controls">
+                    <button id="zoom-out" title="Zoom Out"><i class="bi bi-zoom-out"></i></button>
+                    <span id="zoom-level">100%</span>
+                    <button id="zoom-in" title="Zoom In"><i class="bi bi-zoom-in"></i></button>
+                    <button id="zoom-reset" title="Reset Zoom"><i class="bi bi-arrows-fullscreen"></i></button>
+                </div>
+
+                <div class="download-options">
+                    <p class="download-title">Download Image</p>
+                    <div class="download-buttons">
+                        <button id="download-png" class="download-button">
+                            <i class="bi bi-file-earmark-image"></i> PNG
+                        </button>
+                        <button id="download-jpg" class="download-button">
+                            <i class="bi bi-file-earmark"></i> JPG
+                        </button>
+                        <button id="download-svg" class="download-button">
+                            <i class="bi bi-file-earmark-code"></i> SVG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="section-container">
+            <!-- How to Use Section -->
+            <section class="how-to-section" id="how-to-use">
+                <h2>How to Use Brat Text Generator</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Enter Text</h3>
+                            <p>Type in the text you want to display in the input box. It can be any message or creative text you want to express.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Adjust Style</h3>
+                            <p>Select text color, background color, font size and other parameters. Use preset styles or create your own unique style.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Apply Effects</h3>
+                            <p>Try blur effects, text rotation, mirroring, flipping and other effects to give your text more visual impact.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Download Image</h3>
+                            <p>Choose your preferred format (PNG, JPG or SVG) to download the generated image. Share it on social media or use it in your creative projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Features Section -->
+            <section class="features-section" id="features">
+                <h2>Key Features</h2>
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <h3>Real-time Preview</h3>
+                        <p>See your design effects instantly. All adjustments are immediately visible in the preview area without waiting for refresh or loading.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-download"></i>
+                        </div>
+                        <h3>Multiple Export Formats</h3>
+                        <p>Supports PNG, JPG and SVG export formats to meet different needs, high-quality preservation of your creative work.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-palette-fill"></i>
+                        </div>
+                        <h3>Rich Style Options</h3>
+                        <p>Provides multiple preset styles and comprehensive customization options. Adjust text size, color, blur intensity to create your unique visual effect.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Perfect adaptation for various devices. Whether on computer, tablet or phone, you can use all features smoothly.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inspiration Section -->
+            <section class="inspiration-section">
+                <div class="inspiration-content">
+                    <div class="inspiration-text">
+                        <h2>Brat Style Inspiration</h2>
+                        <p>The Brat style originates from Charli XCX's album cover design, characterized by vibrant green backgrounds, bold text, and slightly blurred effects. This simple yet impactful design style has become one of the iconic elements of contemporary pop culture.</p>
+                        <p>With our generator, you can easily create text images that match this aesthetic, adding fashion sense to your social media, personal projects, or creative designs.</p>
+                    </div>
+                    <div class="inspiration-image">
+                        <div class="example-preview">
+                            <span>brat style</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section" id="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the "Brat" style? What's its origin?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The "Brat" style originated from British singer Charli XCX's album cover design of the same name, released in 2023. This style is characterized by bright neon green backgrounds, minimalist black text, and slight blur effects. It quickly became popular on social media and formed a unique cultural phenomenon. This aesthetic style has been widely used in various creative designs for its simplicity and visual impact.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What can I use the generated images for?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can use the generated images for personal purposes, including social media posts, personal projects, or non-commercial creations. They're perfect for Instagram stories, Twitter covers, personal blog illustrations, or fun content to share with friends. For commercial use, please ensure you have the rights to use the relevant fonts and design elements.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Why does my text look blurry?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The blur effect is one of the core features of the Brat style, giving the image a unique aesthetic feel. You can adjust the blur intensity using the "Blur Effect" slider, ranging from 0 (no blur) to 10 (high blur). The classic Brat style typically uses a slight blur effect of about 1.5px, but you can freely adjust it according to your creative preference.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I create the best effect for long text?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>For longer text, the system will automatically adjust the font size to ensure the text fits the canvas. For best results, we recommend: 1) Keep your text short and concise, typically 20-30 characters works best; 2) For longer text, consider reducing font size and increasing canvas dimensions; 3) Consider breaking long sentences into multiple lines using the Enter key; 4) Try different alignment options - sometimes left or right alignment works better than center for long text.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I use non-English characters?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, our tool fully supports Chinese, Japanese, Korean, and other language characters. However, please note that due to different width-to-height ratios of different language characters, you may need to adjust font size or canvas dimensions for optimal display. Some special symbols and emojis may also require additional adjustments to display correctly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I use this tool on mobile devices?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, Brat Text Generator is fully compatible with mobile devices. The interface automatically adapts to your screen size, and all features work normally on phones and tablets. On mobile devices, you can easily adjust all parameters, preview effects, and download images directly to your device gallery, making it perfect for creating and sharing on the go.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I create larger sized images?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>In the "Background Settings" area, you can customize the width and height of the image through the "Canvas Size" option, supporting images up to 2000×2000 pixels. For high-resolution devices or printing needs, we recommend using dimensions of at least 1200×1200 pixels. Note that after increasing the canvas size, you may need to adjust the font size accordingly to maintain visual balance of the text on the larger canvas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Which format is best for sharing on social media?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Different formats are recommended for different uses:<br>
+                            - <strong>PNG format</strong>: The most versatile choice, maintaining high quality and clarity, suitable for Instagram, Twitter, and most platforms.<br>
+                            - <strong>JPG format</strong>: Smaller file size, suitable for scenarios requiring faster network loading, such as messaging apps or website backgrounds.<br>
+                            - <strong>SVG format</strong>: Vector format, can be scaled without loss of quality, ideal for designers or print work requiring further editing. SVG may not be supported on some social platforms but is very useful for web design and professional image editing.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I add custom fonts or upload my own background?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The current version focuses on providing the authentic Brat style using a fixed font to ensure style consistency. If you need to use custom fonts or backgrounds, you can first generate a basic image with our tool, then further customize it in image editing software such as Photoshop, GIMP, or Canva. We are considering adding more customization options in future versions, including font selection and background image upload features.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Are the generated images stored on your server?</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No. All image processing is done entirely locally in your browser. We do not store any images you generate or text content you input on our servers. When you click the download button, the image is saved directly to your device, and no content is uploaded to our servers at any point in the process, ensuring your creative content remains completely private.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="seo-section">
+            <div class="seo-container">
+                <div class="seo-content">
+                    <h2>The Best Free Online Brat Text Generator</h2>
+                    <p>Our <strong>Brat Text Generator</strong> is the premier tool for creating text in the iconic Brat style popularized by Charli XCX. Whether you need <strong>transparent background text</strong>, <strong>white text</strong> on green, or custom colored text, our <strong>bratgenerator text</strong> tool delivers high-quality results instantly.</p>
+                    
+                    <h3>Why Choose Our Brat Text Generator?</h3>
+                    <ul class="seo-features">
+                        <li><strong>Authentic Brat Style</strong> - True to Charli XCX's album aesthetic</li>
+                        <li><strong>Multiple Export Options</strong> - Download as PNG, JPG or SVG</li>
+                        <li><strong>Transparent Background Support</strong> - Perfect for overlays and designs</li>
+                        <li><strong>White Text Option</strong> - Create striking white on green brat text</li>
+                        <li><strong>Custom Text Colors</strong> - Express your unique style</li>
+                        <li><strong>Adjustable Blur Effect</strong> - Fine-tune the iconic brat blur</li>
+                    </ul>
+                    
+                    <p>Create unique <strong>Brat text font</strong> designs for your social media, profile pictures, merchandise, or any creative project with our easy-to-use <strong>text generator brat</strong> tool.</p>
+
+                    <div class="keyword-cloud-container">
+                        <h3 class="keyword-cloud-title">Popular Searches</h3>
+                        <div class="keyword-cloud">
+                            <span>brat text generator</span>
+                            <span>brat generator text</span>
+                            <span>bratgenerator text</span>
+                            <span>brat text generator charli</span>
+                            <span>brat text generator transparent</span>
+                            <span>brat generator white text</span>
+                            <span>brat textgenerator</span>
+                            <span>brat text font generator</span>
+                            <span>text generator brat</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ad-banner">
+                        <div class="ad-content">
+                            <p>Create amazing text designs with our premium tools</p>
+                            <a href="#" class="ad-button">Try Premium</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-wrapper">
+            <footer class="enhanced-footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Brat Text Generator</h3>
+                        <p>Create custom Brat style text images that make your creativity stand out.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#how-to-use">How to Use</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>Any suggestions or feedback about this tool?</p>
+                        <a href="mailto:contact@brattextgenerator.com" class="contact-link">
+                            <i class="bi bi-envelope"></i> Send Email
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Brat Text Generator. All Rights Reserved.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20amazing%20Brat%20Text%20Generator!&url=https://www.brattextgenerator.org" target="_blank" rel="noopener noreferrer nofollow" title="Share on Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.brattextgenerator.org" target="_blank" rel="noopener noreferrer nofollow" title="Share on Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.brattextgenerator.org&title=Brat%20Text%20Generator" target="_blank" rel="noopener noreferrer nofollow" title="Share on LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://pinterest.com/pin/create/button/?url=https://www.brattextgenerator.org&description=Create%20custom%20Brat%20style%20text%20images" target="_blank" rel="noopener noreferrer nofollow" title="Share on Pinterest"><i class="bi bi-pinterest"></i></a>
+                        <a href="mailto:?subject=Check%20out%20this%20Brat%20Text%20Generator&body=I%20found%20this%20cool%20Brat%20Text%20Generator%20at%20https://www.brattextgenerator.org" title="Share via Email"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="bi bi-x-lg"></i>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#how-to-use" class="mobile-link">How to Use</a>
+            <a href="#features" class="mobile-link">Features</a>
+            <a href="#faq" class="mobile-link">FAQ</a>
+            <a href="#" class="mobile-link highlight">Get Started</a>
+        </div>
+    </div>
+
+    <!-- 删除底部导航栏的脚本 -->
+    <script>
+        // 在DOM加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 查找并删除底部导航栏（通过内容识别）
+            const allElements = document.getElementsByTagName('*');
+            for (let i = 0; i < allElements.length; i++) {
+                const el = allElements[i];
+                // 检查元素及其子元素是否包含与底部导航栏相似的文本
+                if (el.innerText && el.innerText.includes('How to Use') && 
+                    el.innerText.includes('Features') && 
+                    el.innerText.includes('FAQ') && 
+                    el.innerText.includes('Get Started') &&
+                    (el.style.position === 'fixed' || el.style.position === 'sticky' || 
+                     getComputedStyle(el).position === 'fixed' || getComputedStyle(el).position === 'sticky')) {
+                    // 如果找到匹配的元素，并且是固定或粘性定位的，则删除它
+                    el.remove();
+                    console.log('底部导航栏已删除');
+                }
+            }
+            
+            // 移除图片中显示的底部导航栏
+            const fixedBottomBar = document.querySelector('div[style*="position:fixed"][style*="bottom:0"], div[style*="position: fixed"][style*="bottom: 0"]');
+            if (fixedBottomBar) {
+                fixedBottomBar.remove();
+                console.log('固定底部导航栏已删除');
+            }
+            
+            // 删除红框中的导航链接（通常是浏览器或第三方插件添加的）
+            const navLinks = document.querySelectorAll('a[href*="How to Use"], a[href*="Features"], a[href*="FAQ"], a[href*="Get Started"]');
+            navLinks.forEach(link => {
+                // 检查是否是页脚以外的链接
+                const isInFooter = link.closest('footer') !== null;
+                const isInMainNav = link.closest('.main-nav') !== null || link.closest('.nav-links') !== null;
+                
+                if (!isInFooter && !isInMainNav) {
+                    const parent = link.parentElement;
+                    if (parent && parent.children.length <= 4) {
+                        parent.remove(); // 如果父元素只包含少量元素，可能是导航栏，整个删除
+                        console.log('导航链接父元素已删除');
+                    } else {
+                        link.remove(); // 否则只删除链接
+                        console.log('单个导航链接已删除');
+                    }
+                }
+            });
+            
+            // 特别移除红框中的底部导航栏(通常仅包含链接文本)
+            const bottomLinkContainers = document.querySelectorAll('div:not(.nav-links):not(.mobile-menu-links)');
+            bottomLinkContainers.forEach(container => {
+                if (container.innerText && 
+                    container.innerText.includes('How to Use') && 
+                    container.innerText.includes('Features') && 
+                    container.innerText.includes('FAQ') && 
+                    container.innerText.includes('Get Started') &&
+                    container.children.length <= 4) {
+                    container.remove();
+                    console.log('底部链接容器已删除');
+                }
+            });
+            
+            // 额外尝试移除图片中红框的底部导航栏
+            // 检查所有的底部元素
+            const allDivs = document.querySelectorAll('div');
+            allDivs.forEach(div => {
+                // 只检查在页面底部的元素
+                const rect = div.getBoundingClientRect();
+                const isNearBottom = rect.bottom > window.innerHeight - 100 && rect.bottom <= window.innerHeight;
+                
+                if (isNearBottom) {
+                    // 检查是否包含类似导航的内容
+                    const text = div.innerText || '';
+                    if (text.includes('How to Use') && text.includes('Features') && 
+                        text.includes('FAQ') && text.includes('Get Started')) {
+                        div.remove();
+                        console.log('通过位置识别的底部导航栏已删除');
+                    }
+                }
+            });
+            
+            // 直接尝试查找包含特定文本模式的链接组
+            const linkGroups = document.querySelectorAll('div, nav, section');
+            linkGroups.forEach(group => {
+                const text = group.innerText || '';
+                const linksPattern = /How to Use\s*Features\s*FAQ\s*Get Started/i;
+                if (linksPattern.test(text)) {
+                    // 确保这不是主导航
+                    if (!group.classList.contains('nav-links') && 
+                        !group.classList.contains('main-nav') && 
+                        !group.closest('.main-nav')) {
+                        group.remove();
+                        console.log('通过文本模式匹配的导航组已删除');
+                    }
+                }
+            });
+            
+            // 检查独立的红框问题
+            setTimeout(function() {
+                const redBox = document.querySelector('div[style*="border:1px solid red"], div[style*="border: 1px solid red"], div[style*="border:1px solid #ff0000"], div[style*="border: 1px solid #ff0000"]');
+                if (redBox) {
+                    redBox.remove();
+                    console.log('红框已删除');
+                }
+            }, 500);
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html> 
