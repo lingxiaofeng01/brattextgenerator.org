@@ -27,21 +27,32 @@ body {
 
 /* 导航栏样式 */
 .main-nav {
-    position: sticky;
+    position: fixed;
     top: 0;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    padding: 1rem 0;
+    background-color: var(--background-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.8rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 40px;
+    width: auto;
 }
 
 .logo a {
@@ -51,6 +62,7 @@ body {
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--text-color);
+    visibility: visible;
 }
 
 .logo-text {
@@ -62,10 +74,12 @@ body {
     margin-left: 4px;
 }
 
+/* 导航链接 */
 .nav-links {
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    visibility: visible;
 }
 
 .nav-link {
@@ -76,6 +90,7 @@ body {
     padding: 0.3rem 0.5rem;
     border-radius: 4px;
     transition: all 0.2s ease;
+    display: inline-block;
 }
 
 .nav-link:hover {
@@ -94,6 +109,116 @@ body {
     background-color: var(--primary-hover);
     color: #000;
     transform: translateY(-2px);
+}
+
+/* 手机菜单按钮 */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0.5rem;
+    z-index: 2001;
+}
+
+/* 媒体查询 */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--background-color);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        z-index: 1000;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .logo img {
+        max-height: 30px;
+    }
+}
+
+/* 容器样式 - 为固定导航留出空间 */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+    padding-top: 80px; /* 为固定导航栏留出空间 */
+    position: relative;
+    z-index: 100;
+}
+
+/* 重置标题区域样式 */
+header {
+    display: block;
+    visibility: visible;
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+.seo-description-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.seo-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    text-align: center;
+}
+
+/* 内容包装区域 */
+.content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* 中文版头部区域 */
+.intro-section {
+    display: block;
+    visibility: visible;
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    position: relative;
+    z-index: 10;
 }
 
 /* 语言切换样式 */
@@ -216,29 +341,6 @@ body {
     color: var(--text-light);
     font-size: 0.95rem;
     line-height: 1.5;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-/* 头部样式 */
-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-header h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.3rem;
-    font-weight: 700;
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--text-light);
 }
 
 /* 主布局 - 两栏式设计 */
@@ -1003,6 +1105,7 @@ input[type="range"] {
     
     .nav-links.active {
         display: flex;
+        visibility: visible;
     }
     
     .mobile-menu-toggle {
@@ -2038,5 +2141,266 @@ input[type="range"] {
         align-items: flex-end;
         text-align: right;
         padding-right: 20px;
+    }
+}
+
+/* 用户创作展示部分 */
+.user-examples-section {
+    margin: 40px 0;
+    padding: 40px 0;
+    background-color: #FAFFF5;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(138, 228, 3, 0.08);
+    border-top: 1px solid rgba(138, 228, 3, 0.1);
+    border-bottom: 1px solid rgba(138, 228, 3, 0.1);
+}
+
+.user-examples-section h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #333;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.user-examples-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 1.5px;
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: #666;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.examples-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 30px 0;
+    padding: 0 20px;
+}
+
+.example-card {
+    flex: 0 0 calc(25% - 25px);
+    max-width: calc(25% - 25px);
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(138, 228, 3, 0.1);
+}
+
+.example-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(138, 228, 3, 0.15);
+}
+
+.example-image {
+    width: 100%;
+    padding-bottom: 100%; /* 创建正方形容器 */
+    position: relative;
+    overflow: hidden;
+}
+
+.example-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.example-card:hover .example-image img {
+    transform: scale(1.05);
+}
+
+.example-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.example-info h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    color: #333;
+}
+
+.example-info p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.user-submission {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.user-submission h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.user-submission p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.submission-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.submission-button:hover {
+    background-color: #78c800;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(138, 228, 3, 0.2);
+}
+
+@media (max-width: 1200px) {
+    .example-card {
+        flex: 0 0 calc(33.33% - 25px);
+        max-width: calc(33.33% - 25px);
+    }
+}
+
+@media (max-width: 992px) {
+    .example-card {
+        flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .user-examples-section {
+        padding: 30px 0;
+    }
+    
+    .examples-container {
+        gap: 20px;
+    }
+    
+    .example-card {
+        flex: 0 0 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+    }
+    
+    .example-image {
+        padding-bottom: 100%; /* 保持正方形比例 */
+    }
+}
+
+@media (max-width: 480px) {
+    .examples-container {
+        gap: 15px;
+    }
+    
+    .example-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .example-image {
+        padding-bottom: 100%; /* 保持正方形比例 */
+    }
+    
+    .user-examples-section h2 {
+        font-size: 28px;
+    }
+    
+    .section-description {
+        font-size: 16px;
+    }
+}
+
+/* 删除旧的mobile-menu样式，这可能是导致问题的原因 */
+.mobile-menu,
+.mobile-menu-close,
+.mobile-menu-links,
+.mobile-link {
+    display: none;
+}
+
+/* 添加新的底部导航样式 */
+.bottom-nav {
+    display: none; /* 默认不显示 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.8rem 0;
+    z-index: 999;
+}
+
+.bottom-nav-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bottom-nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.bottom-nav-links a.highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 在移动设备上才显示底部导航 */
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: block;
+    }
+    
+    /* 确保主内容区域有足够的底部边距，避免被底部导航覆盖 */
+    .container {
+        padding-bottom: 60px;
+    }
+}
+
+/* 修复底部区域和页脚可能冲突的样式 */
+.footer-wrapper {
+    margin-bottom: 60px; /* 在移动设备上为底部导航留出空间 */
+}
+
+@media (min-width: 769px) {
+    .footer-wrapper {
+        margin-bottom: 0; /* 非移动设备不需要额外空间 */
     }
 } 

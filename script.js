@@ -31,6 +31,7 @@ const zoomOutBtn = document.getElementById('zoom-out');
 const zoomResetBtn = document.getElementById('zoom-reset');
 const zoomLevelDisplay = document.getElementById('zoom-level');
 const previewWrapper = document.querySelector('.preview-wrapper');
+const headerElement = document.querySelector('header');
 
 // 默认设置
 const defaultSettings = {
@@ -417,6 +418,13 @@ function init() {
     
     // 确保初始化时应用正确的圆角值
     previewPanel.style.borderRadius = `${defaultSettings.borderRadius}px`;
+    
+    // 确保header元素是可见的
+    if (headerElement) {
+        headerElement.style.display = 'block';
+        headerElement.style.visibility = 'visible';
+        console.log('Header visibility set to visible');
+    }
     
     // 根据默认设置初始化按钮状态
     if (defaultSettings.textAlign === 'left') {
@@ -1076,15 +1084,102 @@ function createSVG() {
         </svg>`;
 }
 
-// 初始化
-document.addEventListener('DOMContentLoaded', () => {
+// 底部导航处理
+function initBottomNav() {
+    const bottomNav = document.querySelector('.bottom-nav');
+    
+    // 如果找到底部导航
+    if (bottomNav) {
+        // 检查设备宽度决定是否显示底部导航
+        function checkBottomNavVisibility() {
+            if (window.innerWidth <= 768) {
+                bottomNav.style.display = 'block';
+                // 确保底部有足够空间不被底部导航覆盖
+                document.querySelector('.footer-wrapper')?.style.marginBottom = '60px';
+            } else {
+                bottomNav.style.display = 'none';
+                document.querySelector('.footer-wrapper')?.style.marginBottom = '0';
+            }
+        }
+        
+        // 初始检查
+        checkBottomNavVisibility();
+        
+        // 监听窗口大小变化
+        window.addEventListener('resize', function() {
+            checkBottomNavVisibility();
+        });
+        
+        // 点击底部导航链接后滚动到对应区域
+        const bottomNavLinks = bottomNav.querySelectorAll('a');
+        bottomNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 如果链接有锚点
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href !== '#') {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        // 平滑滚动到目标区域
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    }
+}
+
+// DOMContentLoaded事件 - 页面加载完成后执行 - 优化版本
+document.addEventListener('DOMContentLoaded', function() {
+    // 先执行导航初始化
+    initNavMenu();
+    
+    // 确保导航栏可见
+    ensureNavigationVisible();
+    
+    // 初始化底部导航
+    initBottomNav();
+    
+    // 页面大小改变时再次检查 - 使用节流函数优化性能
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            ensureNavigationVisible();
+        }, 100);
+    });
+    
+    // 只需一次延时检查即可
+    setTimeout(ensureNavigationVisible, 500);
+    
+    // 确保导航栏和头部可见
+    const header = document.querySelector('header');
+    if (header) {
+        header.style.display = 'block';
+        header.style.visibility = 'visible';
+    }
+    
+    // 调整页面内容的上边距，为固定导航栏留出空间
+    const container = document.querySelector('.container');
+    if (container) {
+        container.style.paddingTop = '80px';
+    }
+    
     init();
     
     // 初始化FAQ折叠功能
     initFAQ();
     
-    // 初始化导航菜单
-    initNavMenu();
+    // 移除任何可能的红框元素
+    setTimeout(function() {
+        const redBoxes = document.querySelectorAll('div[style*="border:1px solid red"], div[style*="border: 1px solid red"]');
+        redBoxes.forEach(box => {
+            // 确保不是导航的一部分
+            if (!box.closest('.main-nav')) {
+                box.remove();
+            }
+        });
+    }, 1000);
 });
 
 // FAQ折叠/展开功能
@@ -1108,37 +1203,74 @@ function initFAQ() {
     });
 }
 
-// 导航菜单切换功能
+// 导航菜单切换功能 - 优化版本
 function initNavMenu() {
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+    if (mobileMenuToggle && navLinks) {
+        // 根据屏幕宽度设置初始状态
+        if (window.innerWidth <= 768) {
+            mobileMenuToggle.style.display = 'block';
+            navLinks.style.display = 'none';
+        } else {
+            mobileMenuToggle.style.display = 'none';
+            navLinks.style.display = 'flex';
+        }
+        
+        // 点击菜单切换按钮时切换导航链接的显示
+        mobileMenuToggle.addEventListener('click', function() {
+            const isVisible = navLinks.classList.contains('show');
             
-            // 切换图标
-            const icon = menuToggle.querySelector('i');
-            if (icon.classList.contains('bi-list')) {
-                icon.classList.remove('bi-list');
-                icon.classList.add('bi-x-lg');
+            if (isVisible) {
+                navLinks.classList.remove('show');
+                navLinks.style.display = 'none';
+                // 切换图标
+                mobileMenuToggle.innerHTML = '<i class="bi bi-list"></i>';
             } else {
-                icon.classList.remove('bi-x-lg');
-                icon.classList.add('bi-list');
+                navLinks.classList.add('show');
+                navLinks.style.display = 'flex';
+                // 切换图标
+                mobileMenuToggle.innerHTML = '<i class="bi bi-x-lg"></i>';
             }
         });
-        
-        // 点击导航链接后关闭菜单
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('active');
-                    const icon = menuToggle.querySelector('i');
-                    icon.classList.remove('bi-x-lg');
-                    icon.classList.add('bi-list');
-                }
-            });
-        });
+    }
+}
+
+// 确保导航可见
+function ensureNavigationVisible() {
+    const mainNav = document.querySelector('.main-nav');
+    const navContainer = document.querySelector('.nav-container');
+    const logo = document.querySelector('.logo');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mainNav) {
+        mainNav.style.position = 'fixed';
+        mainNav.style.top = '0';
+        mainNav.style.left = '0';
+        mainNav.style.width = '100%';
+        mainNav.style.zIndex = '1000';
+        mainNav.style.display = 'block';
+        mainNav.style.visibility = 'visible';
+    }
+    
+    if (navContainer) {
+        navContainer.style.display = 'flex';
+        navContainer.style.visibility = 'visible';
+    }
+    
+    if (logo) {
+        logo.style.display = 'flex';
+        logo.style.visibility = 'visible';
+    }
+    
+    if (navLinks) {
+        // 检查屏幕宽度，如果是移动设备而且菜单没有激活，则不显示导航链接
+        if (window.innerWidth <= 768 && !navLinks.classList.contains('show')) {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'flex';
+            navLinks.style.visibility = 'visible';
+        }
     }
 } 

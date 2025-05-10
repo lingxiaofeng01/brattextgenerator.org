@@ -3,15 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brat Text Generator | Create Custom Brat Style Text Images Online</title>
-    <meta name="description" content="Free Brat Text Generator inspired by Charli XCX. Create custom brat style text images with transparent, white or colored backgrounds. Generate brat text font designs instantly.">
+    <title>Brat Text Generator – Create Brat Style Fonts & Aesthetic Text Online</title>
+    <meta name="description" content="Generate stylish brat text with our Brat Text Generator. Customize fonts with white text, transparent background, or Charli-inspired styles. Perfect for TikTok bios, social media captions, and aesthetic edits.">
     <meta name="keywords" content="brat text generator, brat generator text, bratgenerator text, brat text generator charli, brat text generator transparent, brat generator white text, brat textgenerator, brat text font generator, text generator brat">
     <link rel="canonical" href="https://www.brattextgenerator.org/">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* 内联样式确保导航可见 */
+        .main-nav {
+            display: block !important;
+            visibility: visible !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 2000;
+            padding: 0.8rem 0;
+        }
+        .nav-container {
+            display: flex !important;
+            visibility: visible !important;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .logo {
+            display: block !important;
+            visibility: visible !important;
+        }
+        .logo a {
+            display: flex !important;
+            visibility: visible !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #222222;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex !important;
+            visibility: visible !important;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .nav-link {
+            color: #222222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.3rem 0.5rem;
+        }
+        .nav-highlight {
+            background-color: #8AE403;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none !important;
+            }
+            .nav-links.active {
+                display: flex !important;
+            }
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+        }
+    </style>
+    <!-- 添加顶部导航栏保持可见的脚本 -->
+    <script>
+        // 在页面加载前执行，确保导航栏元素在DOM加载前就可见
+        (function() {
+            // 创建一个立即执行函数来确保导航栏可见
+            function ensureNavVisible() {
+                // 获取导航栏元素
+                var nav = document.querySelector('.main-nav');
+                if (nav) {
+                    // 强制设置为可见
+                    nav.style.display = 'block';
+                    nav.style.visibility = 'visible';
+                    nav.style.opacity = '1';
+                } else {
+                    // 如果元素还没加载，延迟执行
+                    setTimeout(ensureNavVisible, 10);
+                }
+            }
+            
+            // 多次尝试确保导航栏可见
+            document.addEventListener('DOMContentLoaded', function() {
+                ensureNavVisible();
+                setTimeout(ensureNavVisible, 100);
+                setTimeout(ensureNavVisible, 500);
+                
+                // 监听样式变化
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.attributeName === 'style' || 
+                            mutation.attributeName === 'class' ||
+                            mutation.type === 'childList') {
+                            ensureNavVisible();
+                        }
+                    });
+                });
+                
+                // 开始观察导航栏
+                var nav = document.querySelector('.main-nav');
+                if (nav) {
+                    observer.observe(nav, { 
+                        attributes: true, 
+                        childList: true,
+                        subtree: true,
+                        attributeFilter: ['style', 'class']
+                    });
+                }
+                
+                // 监听window的load事件
+                window.addEventListener('load', ensureNavVisible);
+            });
+            
+            // 初始尝试
+            ensureNavVisible();
+        })();
+    </script>
 </head>
 <body id="top">
     <!-- Navigation Bar -->
@@ -19,17 +149,17 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="#top">
-                    <span class="logo-text">Brat</span>
-                    <span class="logo-accent">Generator</span>
+                    <img src="logo.png" alt="Brat Text Generator">
                 </a>
             </div>
             <div class="nav-links">
                 <a href="#how-to-use" class="nav-link">How to Use</a>
                 <a href="#features" class="nav-link">Features</a>
+                <a href="#user-examples" class="nav-link">User Examples</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#" class="nav-link nav-highlight">Get Started</a>
             </div>
-            <button class="mobile-menu-toggle">
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
                 <i class="bi bi-list"></i>
             </button>
         </div>
@@ -371,50 +501,105 @@
                     </div>
                 </div>
             </section>
-        </div>
 
-        <section class="seo-section">
-            <div class="seo-container">
-                <div class="seo-content">
-                    <h2>The Best Free Online Brat Text Generator</h2>
-                    <p>Our <strong>Brat Text Generator</strong> is the premier tool for creating text in the iconic Brat style popularized by Charli XCX. Whether you need <strong>transparent background text</strong>, <strong>white text</strong> on green, or custom colored text, our <strong>bratgenerator text</strong> tool delivers high-quality results instantly.</p>
-                    
-                    <h3>Why Choose Our Brat Text Generator?</h3>
-                    <ul class="seo-features">
-                        <li><strong>Authentic Brat Style</strong> - True to Charli XCX's album aesthetic</li>
-                        <li><strong>Multiple Export Options</strong> - Download as PNG, JPG or SVG</li>
-                        <li><strong>Transparent Background Support</strong> - Perfect for overlays and designs</li>
-                        <li><strong>White Text Option</strong> - Create striking white on green brat text</li>
-                        <li><strong>Custom Text Colors</strong> - Express your unique style</li>
-                        <li><strong>Adjustable Blur Effect</strong> - Fine-tune the iconic brat blur</li>
-                    </ul>
-                    
-                    <p>Create unique <strong>Brat text font</strong> designs for your social media, profile pictures, merchandise, or any creative project with our easy-to-use <strong>text generator brat</strong> tool.</p>
-
-                    <div class="keyword-cloud-container">
-                        <h3 class="keyword-cloud-title">Popular Searches</h3>
-                        <div class="keyword-cloud">
-                            <span>brat text generator</span>
-                            <span>brat generator text</span>
-                            <span>bratgenerator text</span>
-                            <span>brat text generator charli</span>
-                            <span>brat text generator transparent</span>
-                            <span>brat generator white text</span>
-                            <span>brat textgenerator</span>
-                            <span>brat text font generator</span>
-                            <span>text generator brat</span>
+            <!-- User Examples Section -->
+            <section class="user-examples-section" id="user-examples">
+                <h2>User Creation Showcase</h2>
+                <p class="section-description">Check out amazing designs created by our community using Brat Text Generator. Get inspired and showcase your creativity.</p>
+                
+                <div class="examples-container">
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="images/examples/example1.png" alt="User created 'very brat summer' text design with green background and black font" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>Summer Theme</h3>
+                            <p>Green background with black text, perfectly capturing the summer vibe</p>
                         </div>
                     </div>
                     
-                    <div class="ad-banner">
-                        <div class="ad-content">
-                            <p>Create amazing text designs with our premium tools</p>
-                            <a href="#" class="ad-button">Try Premium</a>
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="images/examples/example2.png" alt="User created 'aesthetic' text design with pink background and white font with blur effect" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>Pink Aesthetic</h3>
+                            <p>Soft pink background paired with white font, enhanced blur effect</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="images/examples/example3.png" alt="User created 'digital future' text design with blue background and glow effect" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>Digital Future</h3>
+                            <p>Deep blue background with bold font, showcasing futuristic tech vibes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="images/examples/example4.png" alt="User created multilingual text design with classic green background" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>Multilingual Design</h3>
+                            <p>Showcasing language support with classic green background</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                
+                <div class="user-submission">
+                    <h3>Share Your Creation</h3>
+                    <p>Create your own Brat style text and share it with us using the hashtag #BratTextGenerator on social media!</p>
+                    <a href="#" class="submission-button">Start Creating</a>
+                </div>
+            </section>
+
+            <!-- SEO Section -->
+            <section class="seo-section">
+                <div class="seo-container">
+                    <div class="seo-content">
+                        <h2>The Best Free Online Brat Text Generator</h2>
+                        <p>Our <strong>Brat Text Generator</strong> is the premier tool for creating text in the iconic Brat style popularized by Charli XCX. Whether you need <strong>transparent background text</strong>, <strong>white text</strong> on green, or custom colored text, our <strong>bratgenerator text</strong> tool delivers high-quality results instantly.</p>
+                        
+                        <h3>Why Choose Our Brat Text Generator?</h3>
+                        <ul class="seo-features">
+                            <li><strong>Authentic Brat Style</strong> - True to Charli XCX's album aesthetic</li>
+                            <li><strong>Multiple Export Options</strong> - Download as PNG, JPG or SVG</li>
+                            <li><strong>Transparent Background Support</strong> - Perfect for overlays and designs</li>
+                            <li><strong>White Text Option</strong> - Create striking white on green brat text</li>
+                            <li><strong>Custom Text Colors</strong> - Express your unique style</li>
+                            <li><strong>Adjustable Blur Effect</strong> - Fine-tune the iconic brat blur</li>
+                        </ul>
+                        
+                        <p>Create unique <strong>Brat text font</strong> designs for your social media, profile pictures, merchandise, or any creative project with our easy-to-use <strong>text generator brat</strong> tool.</p>
+
+                        <div class="keyword-cloud-container">
+                            <h3 class="keyword-cloud-title">Popular Searches</h3>
+                            <div class="keyword-cloud">
+                                <span>brat text generator</span>
+                                <span>brat generator text</span>
+                                <span>bratgenerator text</span>
+                                <span>brat text generator charli</span>
+                                <span>brat text generator transparent</span>
+                                <span>brat generator white text</span>
+                                <span>brat textgenerator</span>
+                                <span>brat text font generator</span>
+                                <span>text generator brat</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ad-banner">
+                            <div class="ad-content">
+                                <p>Create amazing text designs with our premium tools</p>
+                                <a href="#" class="ad-button">Try Premium</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <div class="footer-wrapper">
             <footer class="enhanced-footer">
@@ -428,6 +613,7 @@
                         <ul>
                             <li><a href="#how-to-use">How to Use</a></li>
                             <li><a href="#features">Features</a></li>
+                            <li><a href="#user-examples">User Examples</a></li>
                             <li><a href="#faq">FAQ</a></li>
                         </ul>
                     </div>
@@ -453,123 +639,61 @@
         </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-close">
-            <i class="bi bi-x-lg"></i>
-        </div>
-        <div class="mobile-menu-links">
-            <a href="#how-to-use" class="mobile-link">How to Use</a>
-            <a href="#features" class="mobile-link">Features</a>
-            <a href="#faq" class="mobile-link">FAQ</a>
-            <a href="#" class="mobile-link highlight">Get Started</a>
+    <!-- 替换为简化版底部导航 -->
+    <div class="bottom-nav">
+        <div class="container">
+            <div class="bottom-nav-links">
+                <a href="#how-to-use">How to Use</a>
+                <a href="#features">Features</a>
+                <a href="#user-examples">User Examples</a>
+                <a href="#faq">FAQ</a>
+                <a href="#" class="highlight">Get Started</a>
+            </div>
         </div>
     </div>
 
-    <!-- 删除底部导航栏的脚本 -->
+    <!-- 删除底部导航栏的精简脚本 -->
     <script>
         // 在DOM加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
-            // 查找并删除底部导航栏（通过内容识别）
-            const allElements = document.getElementsByTagName('*');
-            for (let i = 0; i < allElements.length; i++) {
-                const el = allElements[i];
-                // 检查元素及其子元素是否包含与底部导航栏相似的文本
-                if (el.innerText && el.innerText.includes('How to Use') && 
-                    el.innerText.includes('Features') && 
-                    el.innerText.includes('FAQ') && 
-                    el.innerText.includes('Get Started') &&
-                    (el.style.position === 'fixed' || el.style.position === 'sticky' || 
-                     getComputedStyle(el).position === 'fixed' || getComputedStyle(el).position === 'sticky')) {
-                    // 如果找到匹配的元素，并且是固定或粘性定位的，则删除它
-                    el.remove();
-                    console.log('底部导航栏已删除');
+            // 保护顶部导航栏，防止被脚本移除
+            const mainNav = document.querySelector('.main-nav');
+            if (mainNav) {
+                mainNav.dataset.protected = 'true';
+            }
+            
+            // 清理可能存在的底部链接容器
+            const bottomLinks = document.querySelector('.bottom-nav');
+            if (bottomLinks) {
+                // 检查屏幕宽度，小于768px才显示底部导航
+                if (window.innerWidth > 768) {
+                    bottomLinks.style.display = 'none';
                 }
             }
             
             // 移除图片中显示的底部导航栏
             const fixedBottomBar = document.querySelector('div[style*="position:fixed"][style*="bottom:0"], div[style*="position: fixed"][style*="bottom: 0"]');
-            if (fixedBottomBar) {
+            if (fixedBottomBar && !fixedBottomBar.closest('.main-nav')) {
                 fixedBottomBar.remove();
-                console.log('固定底部导航栏已删除');
             }
-            
-            // 删除红框中的导航链接（通常是浏览器或第三方插件添加的）
-            const navLinks = document.querySelectorAll('a[href*="How to Use"], a[href*="Features"], a[href*="FAQ"], a[href*="Get Started"]');
-            navLinks.forEach(link => {
-                // 检查是否是页脚以外的链接
-                const isInFooter = link.closest('footer') !== null;
-                const isInMainNav = link.closest('.main-nav') !== null || link.closest('.nav-links') !== null;
-                
-                if (!isInFooter && !isInMainNav) {
-                    const parent = link.parentElement;
-                    if (parent && parent.children.length <= 4) {
-                        parent.remove(); // 如果父元素只包含少量元素，可能是导航栏，整个删除
-                        console.log('导航链接父元素已删除');
-                    } else {
-                        link.remove(); // 否则只删除链接
-                        console.log('单个导航链接已删除');
-                    }
-                }
-            });
-            
-            // 特别移除红框中的底部导航栏(通常仅包含链接文本)
-            const bottomLinkContainers = document.querySelectorAll('div:not(.nav-links):not(.mobile-menu-links)');
-            bottomLinkContainers.forEach(container => {
-                if (container.innerText && 
-                    container.innerText.includes('How to Use') && 
-                    container.innerText.includes('Features') && 
-                    container.innerText.includes('FAQ') && 
-                    container.innerText.includes('Get Started') &&
-                    container.children.length <= 4) {
-                    container.remove();
-                    console.log('底部链接容器已删除');
-                }
-            });
-            
-            // 额外尝试移除图片中红框的底部导航栏
-            // 检查所有的底部元素
-            const allDivs = document.querySelectorAll('div');
-            allDivs.forEach(div => {
-                // 只检查在页面底部的元素
-                const rect = div.getBoundingClientRect();
-                const isNearBottom = rect.bottom > window.innerHeight - 100 && rect.bottom <= window.innerHeight;
-                
-                if (isNearBottom) {
-                    // 检查是否包含类似导航的内容
-                    const text = div.innerText || '';
-                    if (text.includes('How to Use') && text.includes('Features') && 
-                        text.includes('FAQ') && text.includes('Get Started')) {
-                        div.remove();
-                        console.log('通过位置识别的底部导航栏已删除');
-                    }
-                }
-            });
-            
-            // 直接尝试查找包含特定文本模式的链接组
-            const linkGroups = document.querySelectorAll('div, nav, section');
-            linkGroups.forEach(group => {
-                const text = group.innerText || '';
-                const linksPattern = /How to Use\s*Features\s*FAQ\s*Get Started/i;
-                if (linksPattern.test(text)) {
-                    // 确保这不是主导航
-                    if (!group.classList.contains('nav-links') && 
-                        !group.classList.contains('main-nav') && 
-                        !group.closest('.main-nav')) {
-                        group.remove();
-                        console.log('通过文本模式匹配的导航组已删除');
-                    }
-                }
-            });
             
             // 检查独立的红框问题
             setTimeout(function() {
-                const redBox = document.querySelector('div[style*="border:1px solid red"], div[style*="border: 1px solid red"], div[style*="border:1px solid #ff0000"], div[style*="border: 1px solid #ff0000"]');
-                if (redBox) {
-                    redBox.remove();
-                    console.log('红框已删除');
-                }
+                // 查找并移除所有红框元素
+                const redBoxes = document.querySelectorAll('div[style*="border:1px solid red"], div[style*="border: 1px solid red"]');
+                redBoxes.forEach(box => {
+                    if (!box.closest('.main-nav')) {
+                        box.remove();
+                    }
+                });
             }, 500);
+            
+            // 确保header元素可见
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.display = 'block';
+                header.style.visibility = 'visible';
+            }
         });
     </script>
 
