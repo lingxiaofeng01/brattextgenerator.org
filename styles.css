@@ -507,6 +507,8 @@ input[type="range"] {
     border: 1px solid var(--border-color);
     cursor: pointer;
     transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
 }
 
 .preset:hover {
@@ -518,19 +520,19 @@ input[type="range"] {
 }
 
 .preset-green {
-    background-color: #8AE403;
+    background-color: #8AE403 !important;
 }
 
 .preset-white {
-    background-color: #FFFFFF;
+    background-color: #FFFFFF !important;
 }
 
 .preset-pink {
-    background-color: #FF97EA;
+    background-color: #FF97EA !important;
 }
 
 .preset-blue {
-    background-color: #97EAFF;
+    background-color: #97EAFF !important;
 }
 
 .size-inputs {

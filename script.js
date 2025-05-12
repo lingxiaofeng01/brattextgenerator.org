@@ -399,9 +399,18 @@ function handlePresetClick(preset) {
         currentSettings.bgColor = '#97EAFF';
     }
     
-    // 更新颜色选择器值
-    if (bgColorPicker) bgColorPicker.value = currentSettings.bgColor;
-    requestAnimationFrame(updatePreview);
+    // 确保颜色选择器的值被更新
+    if (bgColorPicker) {
+        bgColorPicker.value = currentSettings.bgColor;
+    }
+    
+    // 立即更新预览
+    updatePreview();
+    
+    // 直接设置预览面板的背景色，以确保立即生效
+    if (previewPanel) {
+        previewPanel.style.backgroundColor = currentSettings.bgColor;
+    }
 }
 
 // 缩放功能
