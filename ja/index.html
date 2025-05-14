@@ -20,6 +20,76 @@
 
     <!-- Include CSS -->
     <link rel="stylesheet" href="../styles.css">
+<style>
+        /* Language Selector Styles */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            margin-left: 1rem; /* Add some space from other nav items */
+        }
+
+        .language-dropdown-content {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 2001; /* Ensure it's above other nav elements */
+            right: 0; 
+        }
+
+        .language-dropdown-content a {
+            color: black;
+            padding: 10px 14px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .language-dropdown-content a:hover {background-color: #f1f1f1;}
+
+        .language-selector.active .language-dropdown-content { /* Show when active */
+            display: block;
+        }
+
+        #languageSelectorButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #222222; 
+            font-weight: 500; 
+            font-size: 1rem; 
+            padding: 0.3rem 0.5rem; 
+        }
+        #languageSelectorButton:hover {
+            color: #8AE403; 
+        }
+        #languageSelectorButton i {
+            margin-left: 5px;
+            font-size: 0.8rem; 
+        }
+
+        /* Responsive adjustments for language selector */
+        @media (max-width: 768px) {
+            .language-selector {
+                margin-left: 0;
+                width: 100%; 
+                margin-top: 0.5rem;
+            }
+            #languageSelectorButton {
+                width: 100%;
+                justify-content: space-between; 
+                padding: 0.8rem 1rem; 
+            }
+            .language-dropdown-content {
+                position: static; 
+                box-shadow: none;
+                border-top: 1px solid #eee;
+            }
+        }
+</style>
 </head>
 <body id="top">
     <!-- Navigation Bar -->
@@ -319,6 +389,23 @@
 
                             <div class="keyword-cloud-container">
                                 <h3 class="keyword-cloud-title">人気の検索</h3>
+                                <div class="keyword-cloud">
+                                    <span>brat text generator</span>
+                                    <span>brat generator text</span>
+                                    <span>bratgenerator text</span>
+                                    <span>brat text generator charli</span>
+                                    <span>brat text generator transparent</span>
+                                    <span>brat generator white text</span>
+                                    <span>brat textgenerator</span>
+                                    <span>brat text font generator</span>
+                                    <span>text generator brat</span>
+                                    <span>Brat テキストジェネレーター</span>
+                                    <span>Brat フォントジェネレーター</span>
+                                    <span>ブラットテキストジェネレーター</span>
+                                    <span>Charli XCX風 テキスト</span>
+                                    <span>ネオングリーン テキスト</span>
+                                    <span>ぼかし文字ジェネレーター</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -374,81 +461,27 @@
             </div>
         </div>
     </div>
- <!-- 优化底部脚本：使用Intersection Observer实现懒加载 -->
     <script>
-        // 页面加载后初始化懒加载
-        document.addEventListener('DOMContentLoaded', function() {
-            // 处理底部导航
-            const bottomLinks = document.querySelector('.bottom-nav');
-            if (bottomLinks && window.innerWidth > 768) {
-                bottomLinks.style.display = 'none';
-            }
-            
-            // 确保header元素可见
-            const header = document.querySelector('header');
-            if (header) {
-                header.style.display = 'block';
-                header.style.visibility = 'visible';
-            }
-            
-            // 初始化内容懒加载
-            if ('IntersectionObserver' in window) {
-                const lazySections = document.querySelectorAll('.lazy-section');
-                const lazyObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('loaded');
-                            lazyObserver.unobserve(entry.target);
-                        }
-                    });
-                }, {rootMargin: '200px'});
-                
-                lazySections.forEach(section => {
-                    lazyObserver.observe(section);
-                });
-            }
-            
-            // 延迟加载图片
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            if ('loading' in HTMLImageElement.prototype) {
-                // 浏览器支持原生懒加载
-                lazyImages.forEach(img => {
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                    }
-                    // Ensure images inside examples also use relative paths if needed, or adjust their src directly
-                    if(img.src.includes('/images/examples/')) {
-                        img.src = img.src.replace('images/examples/', '../images/examples/');
-                    }
-                });
-            } else {
-                // 回退使用Intersection Observer
-                if ('IntersectionObserver' in window) {
-                    const imageObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const img = entry.target;
-                                if (img.dataset.src) {
-                                    img.src = img.dataset.src;
-                                }
-                                // Ensure images inside examples also use relative paths if needed, or adjust their src directly
-                                if(img.src.includes('/images/examples/')) {
-                                    img.src = img.src.replace('images/examples/', '../images/examples/');
-                                }
-                                imageObserver.unobserve(img);
-                            }
-                        });
-                    });
-                    
-                    lazyImages.forEach(img => {
-                        imageObserver.observe(img);
-                    });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Language selector toggle
+        const langButton = document.getElementById('languageSelectorButton');
+        const languageSelector = document.querySelector('.language-selector');
+        
+        if(langButton && languageSelector) {
+            langButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                languageSelector.classList.toggle('active');
+            });
+            // Close dropdown if clicked outside
+            document.addEventListener('click', function(event) {
+                const dropdownContent = languageSelector.querySelector('.language-dropdown-content');
+                if (languageSelector.classList.contains('active') && dropdownContent && !langButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+                    languageSelector.classList.remove('active');
                 }
-            }
-        });
+            });
+        }
+    });
     </script>
-
-    <!-- 使用defer属性延迟加载主脚本 -->
     <script src="../script.js" defer></script>
 </body>
 </html> 
