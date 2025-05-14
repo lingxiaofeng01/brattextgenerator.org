@@ -21,6 +21,376 @@
     <!-- Include CSS -->
     <link rel="stylesheet" href="../styles.css">
 <style>
+        /* 内联导航样式以减少关键渲染路径阻塞 */
+        .main-nav {
+            display: block !important;
+            visibility: visible !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 2000;
+            padding: 0.8rem 0;
+        }
+        .nav-container {
+            display: flex !important;
+            visibility: visible !important;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .logo {
+            display: block !important;
+            visibility: visible !important;
+        }
+        .logo a {
+            display: flex !important;
+            visibility: visible !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #222222;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex !important;
+            visibility: visible !important;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .nav-link {
+            color: #222222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.3rem 0.5rem;
+        }
+        .nav-highlight {
+            background-color: #8AE403;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none !important;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: #fff;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            .nav-links.show {
+                display: flex !important;
+            }
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+        }
+        
+        /* 关键头部和预览区样式 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        header {
+            padding-top: 80px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .controls {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #8AE403;
+            width: 594px;
+            height: 594px;
+            margin: 0 auto;
+            position: relative;
+            max-width: 100%;
+        }
+        
+        /* 仅在移动端应用预览区域缩放 */
+        @media (max-width: 768px) {
+            .preview {
+                transform-origin: center;
+                transform: scale(0.5);
+            }
+            .preview-wrapper {
+                overflow: hidden;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .bottom-nav {
+                display: flex !important;
+                padding: 0.5rem 0;
+                background: white;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            }
+            .bottom-nav-links {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding: 0.5rem 0;
+            }
+            .bottom-nav-links a {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.75rem;
+            }
+        }
+        
+        /* 添加移动端优化CSS */
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 60px; /* 为底部导航腾出空间 */
+            }
+            .preview-container {
+                width: 100%;
+                overflow: hidden;
+            }
+            .controls-container {
+                padding: 0.75rem;
+            }
+            .control-group {
+                margin-bottom: 0.75rem;
+            }
+            .bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: white;
+                z-index: 1000;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            }
+            .enhanced-footer {
+                padding-bottom: 70px;
+            }
+            .footer-section {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+            .keyword-cloud span {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+                margin: 0.2rem;
+            }
+        }
+        
+        /* 触摸反馈样式 */
+        .touch-active {
+            opacity: 0.7;
+            transform: scale(0.98);
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        }
+        
+        /* 优化滚动体验 */
+        .scrollable {
+            -webkit-overflow-scrolling: touch;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        
+        /* 移动端优化视觉样式 */
+        @media (max-width: 768px) {
+            .mobile-optimized button,
+            .mobile-optimized .btn,
+            .mobile-optimized .control-option {
+                min-height: 44px;
+                padding: 10px 15px;
+            }
+            
+            .mobile-optimized input[type="text"],
+            .mobile-optimized input[type="number"],
+            .mobile-optimized select {
+                font-size: 16px; /* 防止iOS缩放 */
+                min-height: 44px;
+                padding: 0 15px;
+            }
+            
+            .mobile-optimized .control-group label {
+                margin-bottom: 5px;
+                font-weight: 500;
+            }
+            
+            /* 改进滚动条样式 */
+            .mobile-optimized ::-webkit-scrollbar {
+                width: 4px;
+                height: 4px;
+            }
+            .mobile-optimized ::-webkit-scrollbar-thumb {
+                background: rgba(0,0,0,0.2);
+                border-radius: 4px;
+            }
+        }
+        
+        /* 添加PC端布局增强样式 */
+        @media (min-width: 769px) {
+            main {
+                display: flex;
+                gap: 2rem;
+                align-items: flex-start;
+            }
+            
+            .left-panel {
+                width: 35%;
+                position: sticky;
+                top: 100px;
+                align-self: flex-start;
+            }
+            
+            .right-panel {
+                width: 65%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .preview-wrapper {
+                margin-bottom: 2rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .download-options {
+                width: 80%;
+                margin-top: 1.5rem;
+            }
+            
+            .preview-controls {
+                margin: 1rem 0;
+            }
+            
+            /* 改进按钮样式 */
+            button, .btn {
+                transition: all 0.2s ease;
+            }
+            
+            button:hover, .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            /* 增强控制面板样式 */
+            .controls {
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            }
+            
+            /* 优化预览区域 */
+            .preview {
+                box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+                transition: all 0.3s ease;
+            }
+            
+            /* 底部导航在PC端隐藏 */
+            .bottom-nav {
+                display: none !important;
+            }
+            
+            /* 增强PC端导航和按钮视觉样式 */
+            .nav-link {
+                position: relative;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            .nav-link:not(.nav-highlight)::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 50%;
+                background-color: #8AE403;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-link:not(.nav-highlight):hover::after {
+                width: 80%;
+                left: 10%;
+            }
+            
+            .nav-highlight {
+                box-shadow: 0 4px 8px rgba(138, 228, 3, 0.3);
+                transition: all 0.2s ease;
+            }
+            
+            .nav-highlight:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(138, 228, 3, 0.4);
+            }
+            
+            /* 增强按钮和控制元素 */
+            .control-group button {
+                border-radius: 4px;
+                overflow: hidden;
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+            }
+            
+            .control-group button.active {
+                background-color: #8AE403;
+                border-color: transparent;
+            }
+            
+            /* 增强预览区域 */
+            .preview-wrapper:hover .preview {
+                box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            }
+            
+            /* 下载按钮动画 */
+            .download-button {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            .download-button:hover {
+                background-color: #8AE403;
+                color: #000;
+            }
+        }
+
         /* Language Selector Styles */
         .language-selector {
             position: relative;
@@ -29,7 +399,7 @@
         }
 
         .language-dropdown-content {
-            display: none; /* Hidden by default */
+            display: none;
             position: absolute;
             background-color: #f9f9f9;
             min-width: 120px;
@@ -40,15 +410,15 @@
 
         .language-dropdown-content a {
             color: black;
-            padding: 10px 14px;
+            padding: 10px 14px; /* Adjusted padding */
             text-decoration: none;
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.9rem; /* Slightly smaller font */
         }
 
         .language-dropdown-content a:hover {background-color: #f1f1f1;}
 
-        .language-selector.active .language-dropdown-content { /* Show when active */
+        .language-selector.active .language-dropdown-content {
             display: block;
         }
 
@@ -58,33 +428,33 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            color: #222222; 
-            font-weight: 500; 
-            font-size: 1rem; 
-            padding: 0.3rem 0.5rem; 
+            color: #222222; /* Match other nav links */
+            font-weight: 500; /* Match other nav links */
+            font-size: 1rem; /* Match other nav links */
+            padding: 0.3rem 0.5rem; /* Match other nav links */
         }
         #languageSelectorButton:hover {
-            color: #8AE403; 
+            color: #8AE403; /* Highlight on hover */
         }
         #languageSelectorButton i {
             margin-left: 5px;
-            font-size: 0.8rem; 
+            font-size: 0.8rem; /* Adjust icon size */
         }
 
         /* Responsive adjustments for language selector */
         @media (max-width: 768px) {
             .language-selector {
                 margin-left: 0;
-                width: 100%; 
+                width: 100%; /* Make it full width in mobile menu */
                 margin-top: 0.5rem;
             }
             #languageSelectorButton {
                 width: 100%;
-                justify-content: space-between; 
-                padding: 0.8rem 1rem; 
+                justify-content: space-between; /* Align text and icon nicely */
+                padding: 0.8rem 1rem; /* Adjust padding for mobile */
             }
             .language-dropdown-content {
-                position: static; 
+                position: static; /* Adjust for mobile menu flow */
                 box-shadow: none;
                 border-top: 1px solid #eee;
             }
@@ -132,356 +502,495 @@
 
         <main>
             <!-- Left Control Panel (TOOL AREA - NOT TO BE TRANSLATED) -->
-            <div class="section-container">
-                <!-- How to Use Section -->
-                <section class="how-to-section lazy-section" id="how-to-use" data-lazy-load="true">
-                    <h2>Brat Text Generator の使い方</h2>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h3>テキストを入力</h3>
-                                <p>表示したいテキストを入力ボックスに入力します。Brat Generatorで表現したいメッセージやクリエイティブなテキストを入力できます。</p>
+            <div class="left-panel">
+                <div class="controls">
+                    <div class="control-section">
+                        <h2>Text Settings - Brat Font Generator</h2>
+                        <div class="control-group">
+                            <label for="text-input">Enter Text</label>
+                            <textarea id="text-input" placeholder="Enter your text here to use the Brat Text Generator for your custom style cover" rows="3">input some text to generate your custom brat cover</textarea>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="font-size">Font Size</label>
+                            <div class="slider-container">
+                                <input type="range" id="font-size" min="20" max="200" value="40">
+                                <span id="font-size-value">40px</span>
                             </div>
                         </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h3>スタイルを調整</h3>
-                                <p>テキストの色、背景色、フォントサイズ、その他のパラメータを選択します。Brat Text Generatorのプリセットスタイルを使用するか、独自のスタイルを作成します。</p>
+                        
+                        <div class="control-group">
+                            <label for="text-shadow">Text Shadow</label>
+                            <div class="slider-container">
+                                <input type="range" id="text-shadow" min="0" max="20" value="0">
+                                <span id="text-shadow-value">0px</span>
                             </div>
                         </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h3>エフェクトを適用</h3>
-                                <p>プロフェッショナルなBratフォントジェネレーター機能を使用して、ぼかし効果、テキスト回転、ミラーリング、反転などのエフェクトを試し、テキストに視覚的なインパクトを与えます。</p>
+                        
+                        <div class="control-group">
+                            <label for="text-color">Text Color</label>
+                            <input type="color" id="text-color" value="#000000">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-align">Text Alignment</label>
+                            <div class="button-group">
+                                <button id="align-left" title="Align Left"><i class="bi bi-text-left"></i></button>
+                                <button id="align-center" class="active" title="Align Center"><i class="bi bi-text-center"></i></button>
+                                <button id="align-right" title="Align Right"><i class="bi bi-text-right"></i></button>
                             </div>
                         </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <h3>画像をダウンロード</h3>
-                                <p>生成された画像をダウンロードするためにお好みの形式（PNG、JPG、またはSVG）を選択します。ソーシャルメディアで共有したり、Brat Generatorの作品をクリエイティブなプロジェクトで使用したりします。</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Features Section -->
-                <section class="features-section" id="features">
-                    <h2>Brat Text Generator の主な特徴</h2>
-                    <div class="features-container">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="bi bi-lightning-charge-fill"></i>
-                            </div>
-                            <h3>リアルタイムプレビュー</h3>
-                            <p>デザイン効果を即座に確認できます。Brat Generatorを使用すると、すべての調整が更新や読み込みを待たずにプレビューエリアにすぐに表示されます。</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="bi bi-download"></i>
-                            </div>
-                            <h3>複数のエクスポート形式</h3>
-                            <p>さまざまなニーズに対応するためにPNG、JPG、SVGのエクスポート形式をサポートし、Bratフォントジェネレーターの作品を高品質で保存します。</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="bi bi-palette-fill"></i>
-                            </div>
-                            <h3>豊富なスタイルオプション</h3>
-                            <p>複数のプリセットスタイルと包括的なカスタマイズオプションを提供します。Brat Text Generatorでテキストサイズ、色、ぼかしの強さを調整して、独自の視覚効果を作成します。</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="bi bi-phone"></i>
-                            </div>
-                            <h3>モバイルフレンドリー</h3>
-                            <p>さまざまなデバイスに完全に対応。コンピューター、タブレット、携帯電話のいずれでも、Brat Generatorのすべての機能をスムーズに使用できます。</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Inspiration Section -->
-                <section class="inspiration-section">
-                    <div class="inspiration-content">
-                        <div class="inspiration-text">
-                            <h2>Bratスタイルのインスピレーション</h2>
-                            <p>Bratスタイルは、Charli XCXのアルバムカバーデザインに由来し、鮮やかな緑の背景、太字のテキスト、わずかにぼやけた効果が特徴です。Brat Text Generatorは、現代のポップカルチャーの象徴的な要素の1つとなった、このシンプルでありながらインパクトのあるデザインスタイルを完全に再現します。</p>
-                            <p>Brat Generatorを使用すると、この美学に合ったテキスト画像を簡単に作成でき、ソーシャルメディア、個人的なプロジェクト、またはクリエイティブなデザインにファッションセンスを加えることができます。プロフェッショナルなBratフォントジェネレーターがあなたの作品を目立たせるお手伝いをします。</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FAQ Section -->
-                <section class="faq-section" id="faq">
-                    <h2>Brat Text Generator に関するよくある質問</h2>
-                    <div class="faq-container">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>「Brat」スタイルとは何ですか？その起源は？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>「Brat」スタイルは、2023年にリリースされた英国の歌手Charli XCXの同名のアルバムカバーデザインに由来します。このスタイルは、明るいネオングリーンの背景、ミニマルな黒いテキスト、わずかなぼかし効果が特徴です。ソーシャルメディアですぐに人気を博し、ユニークな文化的現象を形成しました。Brat Text Generatorは、このシンプルでありながら視覚的にインパクトのある美的スタイルを完全に再現します。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>生成された画像は何に使用できますか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>生成された画像は、ソーシャルメディアの投稿、個人的なプロジェクト、非営利の作品など、個人的な目的で使用できます。Instagramのストーリー、Twitterのカバー、個人のブログのイラスト、友人との楽しいコンテンツの共有に最適です。商用利用の場合は、関連するフォントとデザイン要素を使用する権利があることを確認してください。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>なぜテキストがぼやけて見えるのですか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>ぼかし効果はBratスタイルの主要な特徴の1つであり、画像にユニークな美的感覚を与えます。「ぼかし効果」スライダーを使用して、0（ぼかしなし）から10（強いぼかし）の範囲でぼかしの強度を調整できます。クラシックなBratスタイルでは通常、約1.5pxのわずかなぼかし効果が使用されますが、クリエイティブな好みに応じて自由に調整できます。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>長いテキストで最高の効果を得るにはどうすればよいですか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>長いテキストの場合、Brat Generatorシステムはフォントサイズを自動的に調整して、テキストがキャンバスに収まるようにします。最良の結果を得るには、次のことをお勧めします。1）テキストを短く簡潔に保ちます。通常、20〜30文字が最適です。2）長いテキストの場合は、フォントサイズを小さくし、キャンバスの寸法を大きくすることを検討してください。3）Enterキーを使用して長い文を複数行に分割することを検討してください。4）さまざまな配置オプションを試してください。長いテキストの場合、中央揃えよりも左揃えまたは右揃えの方が適している場合があります。当社のBratフォントジェネレーターツールは、テキスト表示を最適化するための柔軟なオプションを提供します。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>英語以外の文字を使用できますか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>はい、当社のツールは中国語、日本語、韓国語、その他の言語の文字を完全にサポートしています。ただし、言語文字の幅と高さの比率が異なるため、最適な表示のためにフォントサイズまたはキャンバスの寸法を調整する必要がある場合があることに注意してください。一部の特殊記号や絵文字も、正しく表示するために追加の調整が必要になる場合があります。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>このツールはモバイルデバイスで使用できますか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>はい、Brat Text Generatorはモバイルデバイスと完全に互換性があります。インターフェイスは画面サイズに自動的に適応し、すべての機能は携帯電話やタブレットで正常に動作します。モバイルデバイスでは、すべてのパラメータを簡単に調整し、効果をプレビューし、画像をデバイスのギャラリーに直接ダウンロードできるため、外出先での作成と共有に最適です。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>より大きなサイズの画像を作成するにはどうすればよいですか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>「背景設定」エリアでは、「キャンバスサイズ」オプションを使用して画像の幅と高さをカスタマイズでき、最大2000×2000ピクセルの画像をサポートします。高解像度デバイスまたは印刷のニーズには、少なくとも1200×1200ピクセルの寸法を使用することをお勧めします。キャンバスサイズを大きくした後、大きなキャンバス上のテキストの視覚的なバランスを維持するために、それに応じてフォントサイズを調整する必要がある場合があることに注意してください。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>ソーシャルメディアで共有するのに最適な形式は何ですか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>さまざまな用途にさまざまな形式が推奨されます。<br>
-                                - <strong>PNG形式</strong>：最も用途の広い選択肢で、高品質と鮮明さを維持し、Instagram、Twitter、ほとんどのプラットフォームに適しています。<br>
-                                - <strong>JPG形式</strong>：ファイルサイズが小さく、メッセージングアプリやWebサイトの背景など、より高速なネットワーク読み込みが必要なシナリオに適しています。<br>
-                                - <strong>SVG形式</strong>：ベクトル形式で、品質を損なうことなくスケーリングでき、デザイナーやさらなる編集が必要な印刷作業に最適です。SVGは一部のソーシャルプラットフォームではサポートされていない場合がありますが、Webデザインやプロの画像編集には非常に役立ちます。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>カスタムフォントを追加したり、独自の背景をアップロードしたりするにはどうすればよいですか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>現在のバージョンでは、スタイルの整合性を確保するために固定フォントを使用して本物のBratスタイルを提供することに重点を置いています。カスタムフォントや背景を使用する必要がある場合は、まず当社のツールで基本画像を生成し、次にPhotoshop、GIMP、Canvaなどの画像編集ソフトウェアでさらにカスタマイズできます。フォントの選択や背景画像のアップロード機能など、将来のバージョンでより多くのカスタマイズオプションを追加することを検討しています。</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>生成された画像はサーバーに保存されますか？</h3>
-                                <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>いいえ。すべての画像処理は完全にローカルのブラウザで行われます。生成した画像や入力したテキストコンテンツはサーバーに保存しません。ダウンロードボタンをクリックすると、画像はデバイスに直接保存され、プロセス中のいかなる時点でもコンテンツはサーバーにアップロードされないため、クリエイティブなコンテンツは完全にプライベートに保たれます。</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- User Examples Section -->
-                <section class="user-examples-section" id="user-examples">
-                    <h2>ユーザー作品ショーケース</h2>
-                    <p class="section-description">Brat Text Generatorを使用してコミュニティが作成した素晴らしいデザインをご覧ください。インスピレーションを得て、あなたの創造性を発揮してください。</p>
-
-                    <div class="examples-container">
-                        <div class="example-card">
-                            <div class="example-image">
-                                <img src="https://www.brattextgenerator.org/example1.png" alt="ユーザーが作成した緑の背景と黒いフォントの「very brat summer」テキストデザイン" loading="lazy">
-                            </div>
-                            <div class="example-info">
-                                <h3>夏のテーマ</h3>
-                                <p>緑の背景に黒いテキストで、夏の雰囲気を完璧に捉えています</p>
-                            </div>
-                        </div>
-
-                        <div class="example-card">
-                            <div class="example-image">
-                                <img src="https://www.brattextgenerator.org/example2.png" alt="ユーザーが作成したピンクの背景と白いフォント、ぼかし効果のある「aesthetic」テキストデザイン" loading="lazy">
-                            </div>
-                            <div class="example-info">
-                                <h3>ピンクの美学</h3>
-                                <p>柔らかなピンクの背景に白いフォントを組み合わせ、ぼかし効果を強化</p>
-                            </div>
-                        </div>
-
-                        <div class="example-card">
-                            <div class="example-image">
-                                <img src="https://www.brattextgenerator.org/example3.png" alt="ユーザーが作成した青い背景とグロー効果のある「digital future」テキストデザイン" loading="lazy">
-                            </div>
-                            <div class="example-info">
-                                <h3>デジタルの未来</h3>
-                                <p>深い青色の背景に太字のフォントで、未来的なテクノロジーの雰囲気を表現</p>
-                            </div>
-                        </div>
-
-                        <div class="example-card">
-                            <div class="example-image">
-                                <img src="https://www.brattextgenerator.org/example4.png" alt="ユーザーが作成したクラシックな緑の背景の多言語テキストデザイン" loading="lazy">
-                            </div>
-                            <div class="example-info">
-                                <h3>多言語デザイン</h3>
-                                <p>クラシックな緑の背景で言語サポートを紹介</p>
+                        
+                        <div class="control-group">
+                            <div class="text-transform-options">
+                                <button id="text-mirror" title="Use Brat Generator mirror effect"><i class="bi bi-symmetry-horizontal"></i></button>
+                                <button id="text-flip" title="Flip text vertically"><i class="bi bi-symmetry-vertical"></i></button>
+                                <button id="text-rotate" title="Rotate text"><i class="bi bi-arrow-clockwise"></i></button>
+                                <button id="text-uppercase" title="Uppercase text"><i class="bi bi-type"></i></button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="user-submission">
-                        <h3>あなたの作品を共有する</h3>
-                        <p>独自のBratスタイルのテキストを作成し、ソーシャルメディアでハッシュタグ#BratTextGeneratorを使用して私たちと共有してください！</p>
-                        <a href="#" class="submission-button">作成を開始</a>
-                    </div>
-                </section>
-
-                <!-- SEO Section -->
-                <section class="seo-section">
-                    <div class="seo-container">
-                        <div class="seo-content">
-                            <h2>最高の無料オンラインBrat Text Generator</h2>
-                            <p>当社の<strong>Brat Text Generator</strong>は、Charli XCXによって広められた象徴的なBratスタイルでテキストを作成するための最高のツールです。<strong>透明な背景のテキスト</strong>、緑色の背景に<strong>白いテキスト</strong>、またはカスタムカラーのテキストが必要な場合でも、当社の<strong>Brat Generator</strong>ツールは高品質な結果を即座に提供します。</p>
-
-                            <h3>Brat Text Generatorを選ぶ理由</h3>
-                            <ul class="seo-features">
-                                <li><strong>本物のBratスタイル</strong> - Charli XCXのアルバムの美学に忠実</li>
-                                <li><strong>複数のエクスポートオプション</strong> - PNG、JPG、またはSVGでダウンロード</li>
-                                <li><strong>透明な背景のサポート</strong> - オーバーレイやデザインに最適</li>
-                                <li><strong>白いテキストオプション</strong> - 緑色の背景に印象的な白いBratテキストを作成</li>
-                                <li><strong>カスタムテキストカラー</strong> - あなたのユニークなスタイルを表現</li>
-                                <li><strong>調整可能なぼかし効果</strong> - 象徴的なBratのぼかしを微調整</li>
-                            </ul>
-
-                            <p>使いやすい<strong>Bratフォントジェネレーター</strong>ツールを使用して、ソーシャルメディア、プロフィール写真、商品、またはあらゆるクリエイティブプロジェクト向けにユニークな<strong>Bratテキストフォント</strong>デザインを作成します。プロの<strong>Brat Generator</strong>として、完璧な視覚効果の作成をお手伝いすることに専念しています。</p>
-
-                            <div class="keyword-cloud-container">
-                                <h3 class="keyword-cloud-title">人気の検索</h3>
-                                <div class="keyword-cloud">
-                                    <span>brat text generator</span>
-                                    <span>brat generator text</span>
-                                    <span>bratgenerator text</span>
-                                    <span>brat text generator charli</span>
-                                    <span>brat text generator transparent</span>
-                                    <span>brat generator white text</span>
-                                    <span>brat textgenerator</span>
-                                    <span>brat text font generator</span>
-                                    <span>text generator brat</span>
-                                    <span>Brat テキストジェネレーター</span>
-                                    <span>Brat フォントジェネレーター</span>
-                                    <span>ブラットテキストジェネレーター</span>
-                                    <span>Charli XCX風 テキスト</span>
-                                    <span>ネオングリーン テキスト</span>
-                                    <span>ぼかし文字ジェネレーター</span>
+                    <div class="control-section">
+                        <h2>Background Settings</h2>
+                        <div class="control-group">
+                            <label for="bg-color">Background Color</label>
+                            <input type="color" id="bg-color" value="#8AE403">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Preset Styles</label>
+                            <div class="preset-container">
+                                <button class="preset preset-green active" title="Classic Green"></button>
+                                <button class="preset preset-white" title="White"></button>
+                                <button class="preset preset-pink" title="Pink"></button>
+                                <button class="preset preset-blue" title="Blue"></button>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="blur-effect">Blur Effect</label>
+                            <div class="slider-container">
+                                <input type="range" id="blur-effect" min="0" max="10" value="1.5" step="0.1">
+                                <span id="blur-effect-value">1.5px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="border-radius">Border Radius</label>
+                            <div class="slider-container">
+                                <input type="range" id="border-radius" min="0" max="50" value="0">
+                                <span id="border-radius-value">0px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="canvas-width">Canvas Size</label>
+                            <div class="size-inputs">
+                                <div class="size-input">
+                                    <span>Width</span>
+                                    <input type="number" id="canvas-width" value="594" min="100" max="2000">
+                                </div>
+                                <div class="size-input">
+                                    <span>Height</span>
+                                    <input type="number" id="canvas-height" value="594" min="100" max="2000">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+
+                    <div class="control-section">
+                        <div class="action-buttons">
+                            <button id="reset-button" class="secondary-button">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset Brat Text Generator
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Preview and Download Area -->
+            <div class="right-panel">
+                <div class="preview-wrapper">
+                    <div class="preview" id="preview-panel">
+                        <div id="text-preview">Use Brat Generator to create your custom style text</div>
+                    </div>
+                </div>
+                
+                <div class="preview-controls">
+                    <button id="zoom-out" title="Zoom Out"><i class="bi bi-zoom-out"></i></button>
+                    <span id="zoom-level">100%</span>
+                    <button id="zoom-in" title="Zoom In"><i class="bi bi-zoom-in"></i></button>
+                    <button id="zoom-reset" title="Reset Zoom"><i class="bi bi-arrows-fullscreen"></i></button>
+                </div>
+
+                <div class="download-options">
+                    <p class="download-title">Download Image Created with Brat Text Generator</p>
+                    <div class="download-buttons">
+                        <button id="download-png" class="download-button">
+                            <i class="bi bi-file-earmark-image"></i> PNG
+                        </button>
+                        <button id="download-jpg" class="download-button">
+                            <i class="bi bi-file-earmark"></i> JPG
+                        </button>
+                        <button id="download-svg" class="download-button">
+                            <i class="bi bi-file-earmark-code"></i> SVG
+                        </button>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <footer class="enhanced-footer">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Brat Text Generator</h3>
-                    <p>Brat Generatorであなたの創造性を際立たせるカスタムBratスタイルのテキスト画像を作成します。当社のプレミアムBratフォントジェネレーターツールはいつでもご利用いただけます。</p>
+        <div class="section-container">
+            <!-- How to Use Section -->
+            <section class="how-to-section lazy-section" id="how-to-use" data-lazy-load="true">
+                <h2>Brat Text Generator の使い方</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>テキストを入力</h3>
+                            <p>表示したいテキストを入力ボックスに入力します。Brat Generatorで表現したいメッセージやクリエイティブなテキストを入力できます。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>スタイルを調整</h3>
+                            <p>テキストの色、背景色、フォントサイズ、その他のパラメータを選択します。Brat Text Generatorのプリセットスタイルを使用するか、独自のスタイルを作成します。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>エフェクトを適用</h3>
+                            <p>プロフェッショナルなBratフォントジェネレーター機能を使用して、ぼかし効果、テキスト回転、ミラーリング、反転などのエフェクトを試し、テキストに視覚的なインパクトを与えます。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>画像をダウンロード</h3>
+                            <p>生成された画像をダウンロードするためにお好みの形式（PNG、JPG、またはSVG）を選択します。ソーシャルメディアで共有したり、Brat Generatorの作品をクリエイティブなプロジェクトで使用したりします。</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>クイックリンク</h3>
-                    <ul>
-                        <li><a href="#how-to-use">使い方</a></li>
-                        <li><a href="#features">特徴</a></li>
-                        <li><a href="#user-examples">ユーザー事例</a></li>
-                        <li><a href="#faq">よくある質問</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>お問い合わせ</h3>
-                    <p>このツールに関するご提案やフィードバックはありますか？</p>
-                    <a href="mailto:contact@brattextgenerator.com" class="contact-link">
-                        <i class="bi bi-envelope"></i> メールを送信
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Brat Text Generator. 無断複写・転載を禁じます。</p>
-                <div class="social-links">
-                    <a href="https://twitter.com/intent/tweet?text=この素晴らしいBrat%20Text%20Generatorをチェックしてください！&url=https://www.brattextgenerator.org/ja/" target="_blank" rel="noopener noreferrer nofollow" title="Twitterで共有"><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.brattextgenerator.org/ja/" target="_blank" rel="noopener noreferrer nofollow" title="Facebookで共有"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.brattextgenerator.org/ja/&title=Brat%20Text%20Generator" target="_blank" rel="noopener noreferrer nofollow" title="LinkedInで共有"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://pinterest.com/pin/create/button/?url=https://www.brattextgenerator.org/ja/&description=カスタムBratスタイルのテキスト画像を作成" target="_blank" rel="noopener noreferrer nofollow" title="Pinterestで共有"><i class="bi bi-pinterest"></i></a>
-                    <a href="mailto:?subject=このBrat%20Text%20Generatorをチェックしてください&body=https://www.brattextgenerator.org/ja/でこのクールなBrat%20Text%20Generatorを見つけました" title="メールで共有"><i class="bi bi-envelope"></i></a>
-                </div>
-            </div>
-        </footer>
-    </div>
+            </section>
 
-    <!-- Simplified Bottom Navigation -->
-    <div class="bottom-nav">
-        <div class="container">
-            <div class="bottom-nav-links">
-                <a href="#how-to-use">使い方</a>
-                <a href="#features">特徴</a>
-                <a href="#user-examples">事例</a>
-                <a href="#faq">よくある質問</a>
-                <a href="#" class="highlight">開始</a>
+            <!-- Features Section -->
+            <section class="features-section" id="features">
+                <h2>Brat Text Generator の主な特徴</h2>
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <h3>リアルタイムプレビュー</h3>
+                        <p>デザイン効果を即座に確認できます。Brat Generatorを使用すると、すべての調整が更新や読み込みを待たずにプレビューエリアにすぐに表示されます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-download"></i>
+                        </div>
+                        <h3>複数のエクスポート形式</h3>
+                        <p>さまざまなニーズに対応するためにPNG、JPG、SVGのエクスポート形式をサポートし、Bratフォントジェネレーターの作品を高品質で保存します。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-palette-fill"></i>
+                        </div>
+                        <h3>豊富なスタイルオプション</h3>
+                        <p>複数のプリセットスタイルと包括的なカスタマイズオプションを提供します。Brat Text Generatorでテキストサイズ、色、ぼかしの強さを調整して、独自の視覚効果を作成します。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h3>モバイルフレンドリー</h3>
+                        <p>さまざまなデバイスに完全に対応。コンピューター、タブレット、携帯電話のいずれでも、Brat Generatorのすべての機能をスムーズに使用できます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inspiration Section -->
+            <section class="inspiration-section">
+                <div class="inspiration-content">
+                    <div class="inspiration-text">
+                        <h2>Bratスタイルのインスピレーション</h2>
+                        <p>Bratスタイルは、Charli XCXのアルバムカバーデザインに由来し、鮮やかな緑の背景、太字のテキスト、わずかにぼやけた効果が特徴です。Brat Text Generatorは、現代のポップカルチャーの象徴的な要素の1つとなった、このシンプルでありながらインパクトのあるデザインスタイルを完全に再現します。</p>
+                        <p>Brat Generatorを使用すると、この美学に合ったテキスト画像を簡単に作成でき、ソーシャルメディア、個人的なプロジェクト、またはクリエイティブなデザインにファッションセンスを加えることができます。プロフェッショナルなBratフォントジェネレーターがあなたの作品を目立たせるお手伝いをします。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section" id="faq">
+                <h2>Brat Text Generator に関するよくある質問</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>「Brat」スタイルとは何ですか？その起源は？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>「Brat」スタイルは、2023年にリリースされた英国の歌手Charli XCXの同名のアルバムカバーデザインに由来します。このスタイルは、明るいネオングリーンの背景、ミニマルな黒いテキスト、わずかなぼかし効果が特徴です。ソーシャルメディアですぐに人気を博し、ユニークな文化的現象を形成しました。Brat Text Generatorは、このシンプルでありながら視覚的にインパクトのある美的スタイルを完全に再現します。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>生成された画像は何に使用できますか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>生成された画像は、ソーシャルメディアの投稿、個人的なプロジェクト、非営利の作品など、個人的な目的で使用できます。Instagramのストーリー、Twitterのカバー、個人のブログのイラスト、友人との楽しいコンテンツの共有に最適です。商用利用の場合は、関連するフォントとデザイン要素を使用する権利があることを確認してください。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>なぜテキストがぼやけて見えるのですか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>ぼかし効果はBratスタイルの主要な特徴の1つであり、画像にユニークな美的感覚を与えます。「ぼかし効果」スライダーを使用して、0（ぼかしなし）から10（強いぼかし）の範囲でぼかしの強度を調整できます。クラシックなBratスタイルでは通常、約1.5pxのわずかなぼかし効果が使用されますが、クリエイティブな好みに応じて自由に調整できます。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>長いテキストで最高の効果を得るにはどうすればよいですか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>長いテキストの場合、Brat Generatorシステムはフォントサイズを自動的に調整して、テキストがキャンバスに収まるようにします。最良の結果を得るには、次のことをお勧めします。1）テキストを短く簡潔に保ちます。通常、20〜30文字が最適です。2）長いテキストの場合は、フォントサイズを小さくし、キャンバスの寸法を大きくすることを検討してください。3）Enterキーを使用して長い文を複数行に分割することを検討してください。4）さまざまな配置オプションを試してください。長いテキストの場合、中央揃えよりも左揃えまたは右揃えの方が適している場合があります。当社のBratフォントジェネレーターツールは、テキスト表示を最適化するための柔軟なオプションを提供します。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>英語以外の文字を使用できますか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>はい、当社のツールは中国語、日本語、韓国語、その他の言語の文字を完全にサポートしています。ただし、言語文字の幅と高さの比率が異なるため、最適な表示のためにフォントサイズまたはキャンバスの寸法を調整する必要がある場合があることに注意してください。一部の特殊記号や絵文字も、正しく表示するために追加の調整が必要になる場合があります。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>このツールはモバイルデバイスで使用できますか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>はい、Brat Text Generatorはモバイルデバイスと完全に互換性があります。インターフェイスは画面サイズに自動的に適応し、すべての機能は携帯電話やタブレットで正常に動作します。モバイルデバイスでは、すべてのパラメータを簡単に調整し、効果をプレビューし、画像をデバイスのギャラリーに直接ダウンロードできるため、外出先での作成と共有に最適です。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>より大きなサイズの画像を作成するにはどうすればよいですか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>「背景設定」エリアでは、「キャンバスサイズ」オプションを使用して画像の幅と高さをカスタマイズでき、最大2000×2000ピクセルの画像をサポートします。高解像度デバイスまたは印刷のニーズには、少なくとも1200×1200ピクセルの寸法を使用することをお勧めします。キャンバスサイズを大きくした後、大きなキャンバス上のテキストの視覚的なバランスを維持するために、それに応じてフォントサイズを調整する必要がある場合があることに注意してください。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>ソーシャルメディアで共有するのに最適な形式は何ですか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>さまざまな用途にさまざまな形式が推奨されます。<br>
+                            - <strong>PNG形式</strong>：最も用途の広い選択肢で、高品質と鮮明さを維持し、Instagram、Twitter、ほとんどのプラットフォームに適しています。<br>
+                            - <strong>JPG形式</strong>：ファイルサイズが小さく、メッセージングアプリやWebサイトの背景など、より高速なネットワーク読み込みが必要なシナリオに適しています。<br>
+                            - <strong>SVG形式</strong>：ベクトル形式で、品質を損なうことなくスケーリングでき、デザイナーやさらなる編集が必要な印刷作業に最適です。SVGは一部のソーシャルプラットフォームではサポートされていない場合がありますが、Webデザインやプロの画像編集には非常に役立ちます。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>カスタムフォントを追加したり、独自の背景をアップロードしたりするにはどうすればよいですか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>現在のバージョンでは、スタイルの整合性を確保するために固定フォントを使用して本物のBratスタイルを提供することに重点を置いています。カスタムフォントや背景を使用する必要がある場合は、まず当社のツールで基本画像を生成し、次にPhotoshop、GIMP、Canvaなどの画像編集ソフトウェアでさらにカスタマイズできます。フォントの選択や背景画像のアップロード機能など、将来のバージョンでより多くのカスタマイズオプションを追加することを検討しています。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>生成された画像はサーバーに保存されますか？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>いいえ。すべての画像処理は完全にローカルのブラウザで行われます。生成した画像や入力したテキストコンテンツはサーバーに保存しません。ダウンロードボタンをクリックすると、画像はデバイスに直接保存され、プロセス中のいかなる時点でもコンテンツはサーバーにアップロードされないため、クリエイティブなコンテンツは完全にプライベートに保たれます。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Examples Section -->
+            <section class="user-examples-section" id="user-examples">
+                <h2>ユーザー作品ショーケース</h2>
+                <p class="section-description">Brat Text Generatorを使用してコミュニティが作成した素晴らしいデザインをご覧ください。インスピレーションを得て、あなたの創造性を発揮してください。</p>
+
+                <div class="examples-container">
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="https://www.brattextgenerator.org/example1.png" alt="ユーザーが作成した緑の背景と黒いフォントの「very brat summer」テキストデザイン" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>夏のテーマ</h3>
+                            <p>緑の背景に黒いテキストで、夏の雰囲気を完璧に捉えています</p>
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="https://www.brattextgenerator.org/example2.png" alt="ユーザーが作成したピンクの背景と白いフォント、ぼかし効果のある「aesthetic」テキストデザイン" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>ピンクの美学</h3>
+                            <p>柔らかなピンクの背景に白いフォントを組み合わせ、ぼかし効果を強化</p>
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="https://www.brattextgenerator.org/example3.png" alt="ユーザーが作成した青い背景とグロー効果のある「digital future」テキストデザイン" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>デジタルの未来</h3>
+                            <p>深い青色の背景に太字のフォントで、未来的なテクノロジーの雰囲気を表現</p>
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="https://www.brattextgenerator.org/example4.png" alt="ユーザーが作成したクラシックな緑の背景の多言語テキストデザイン" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>多言語デザイン</h3>
+                            <p>クラシックな緑の背景で言語サポートを紹介</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-submission">
+                    <h3>あなたの作品を共有する</h3>
+                    <p>独自のBratスタイルのテキストを作成し、ソーシャルメディアでハッシュタグ#BratTextGeneratorを使用して私たちと共有してください！</p>
+                    <a href="#" class="submission-button">作成を開始</a>
+                </div>
+            </section>
+
+            <!-- SEO Section -->
+            <section class="seo-section">
+                <div class="seo-container">
+                    <div class="seo-content">
+                        <h2>最高の無料オンラインBrat Text Generator</h2>
+                        <p>当社の<strong>Brat Text Generator</strong>は、Charli XCXによって広められた象徴的なBratスタイルでテキストを作成するための最高のツールです。<strong>透明な背景のテキスト</strong>、緑色の背景に<strong>白いテキスト</strong>、またはカスタムカラーのテキストが必要な場合でも、当社の<strong>Brat Generator</strong>ツールは高品質な結果を即座に提供します。</p>
+
+                        <h3>Brat Text Generatorを選ぶ理由</h3>
+                        <ul class="seo-features">
+                            <li><strong>本物のBratスタイル</strong> - Charli XCXのアルバムの美学に忠実</li>
+                            <li><strong>複数のエクスポートオプション</strong> - PNG、JPG、またはSVGでダウンロード</li>
+                            <li><strong>透明な背景のサポート</strong> - オーバーレイやデザインに最適</li>
+                            <li><strong>白いテキストオプション</strong> - 緑色の背景に印象的な白いBratテキストを作成</li>
+                            <li><strong>カスタムテキストカラー</strong> - あなたのユニークなスタイルを表現</li>
+                            <li><strong>調整可能なぼかし効果</strong> - 象徴的なBratのぼかしを微調整</li>
+                        </ul>
+
+                        <p>使いやすい<strong>Bratフォントジェネレーター</strong>ツールを使用して、ソーシャルメディア、プロフィール写真、商品、またはあらゆるクリエイティブプロジェクト向けにユニークな<strong>Bratテキストフォント</strong>デザインを作成します。プロの<strong>Brat Generator</strong>として、完璧な視覚効果の作成をお手伝いすることに専念しています。</p>
+
+                        <div class="keyword-cloud-container">
+                            <h3 class="keyword-cloud-title">人気の検索</h3>
+                            <div class="keyword-cloud">
+                                <span>brat text generator</span>
+                                <span>brat generator text</span>
+                                <span>bratgenerator text</span>
+                                <span>brat text generator charli</span>
+                                <span>brat text generator transparent</span>
+                                <span>brat generator white text</span>
+                                <span>brat textgenerator</span>
+                                <span>brat text font generator</span>
+                                <span>text generator brat</span>
+                                <span>Brat テキストジェネレーター</span>
+                                <span>Brat フォントジェネレーター</span>
+                                <span>ブラットテキストジェネレーター</span>
+                                <span>Charli XCX風 テキスト</span>
+                                <span>ネオングリーン テキスト</span>
+                                <span>ぼかし文字ジェネレーター</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="enhanced-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Brat Text Generator</h3>
+                <p>Brat Generatorであなたの創造性を際立たせるカスタムBratスタイルのテキスト画像を作成します。当社のプレミアムBratフォントジェネレーターツールはいつでもご利用いただけます。</p>
+            </div>
+            <div class="footer-section">
+                <h3>クイックリンク</h3>
+                <ul>
+                    <li><a href="#how-to-use">使い方</a></li>
+                    <li><a href="#features">特徴</a></li>
+                    <li><a href="#user-examples">ユーザー事例</a></li>
+                    <li><a href="#faq">よくある質問</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>お問い合わせ</h3>
+                <p>このツールに関するご提案やフィードバックはありますか？</p>
+                <a href="mailto:contact@brattextgenerator.com" class="contact-link">
+                    <i class="bi bi-envelope"></i> メールを送信
+                </a>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Brat Text Generator. 無断複写・転載を禁じます。</p>
+            <div class="social-links">
+                <a href="https://twitter.com/intent/tweet?text=この素晴らしいBrat%20Text%20Generatorをチェックしてください！&url=https://www.brattextgenerator.org/ja/" target="_blank" rel="noopener noreferrer nofollow" title="Twitterで共有"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.brattextgenerator.org/ja/" target="_blank" rel="noopener noreferrer nofollow" title="Facebookで共有"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.brattextgenerator.org/ja/&title=Brat%20Text%20Generator" target="_blank" rel="noopener noreferrer nofollow" title="LinkedInで共有"><i class="bi bi-linkedin"></i></a>
+                <a href="https://pinterest.com/pin/create/button/?url=https://www.brattextgenerator.org/ja/&description=カスタムBratスタイルのテキスト画像を作成" target="_blank" rel="noopener noreferrer nofollow" title="Pinterestで共有"><i class="bi bi-pinterest"></i></a>
+                <a href="mailto:?subject=このBrat%20Text%20Generatorをチェックしてください&body=https://www.brattextgenerator.org/ja/でこのクールなBrat%20Text%20Generatorを見つけました" title="メールで共有"><i class="bi bi-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Simplified Bottom Navigation -->
+<div class="bottom-nav">
+    <div class="container">
+        <div class="bottom-nav-links">
+            <a href="#how-to-use">使い方</a>
+            <a href="#features">特徴</a>
+            <a href="#user-examples">事例</a>
+            <a href="#faq">よくある質問</a>
+            <a href="#" class="highlight">開始</a>
+        </div>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Language selector toggle
-        const langButton = document.getElementById('languageSelectorButton');
-        const languageSelector = document.querySelector('.language-selector');
-        
-        if(langButton && languageSelector) {
-            langButton.addEventListener('click', function(event) {
-                event.stopPropagation();
-                languageSelector.classList.toggle('active');
-            });
-            // Close dropdown if clicked outside
-            document.addEventListener('click', function(event) {
-                const dropdownContent = languageSelector.querySelector('.language-dropdown-content');
-                if (languageSelector.classList.contains('active') && dropdownContent && !langButton.contains(event.target) && !dropdownContent.contains(event.target)) {
-                    languageSelector.classList.remove('active');
-                }
-            });
-        }
-    });
-    </script>
-    <script src="../script.js" defer></script>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Language selector toggle
+    const langButton = document.getElementById('languageSelectorButton');
+    const languageSelector = document.querySelector('.language-selector');
+    
+    if(langButton && languageSelector) {
+        langButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            languageSelector.classList.toggle('active');
+        });
+        // Close dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            const dropdownContent = languageSelector.querySelector('.language-dropdown-content');
+            if (languageSelector.classList.contains('active') && dropdownContent && !langButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+                languageSelector.classList.remove('active');
+            }
+        });
+    }
+});
+</script>
+<script src="../script.js" defer></script>
 </body>
 </html> 
