@@ -374,5 +374,81 @@
             </div>
         </div>
     </div>
+ <!-- 优化底部脚本：使用Intersection Observer实现懒加载 -->
+    <script>
+        // 页面加载后初始化懒加载
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理底部导航
+            const bottomLinks = document.querySelector('.bottom-nav');
+            if (bottomLinks && window.innerWidth > 768) {
+                bottomLinks.style.display = 'none';
+            }
+            
+            // 确保header元素可见
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.display = 'block';
+                header.style.visibility = 'visible';
+            }
+            
+            // 初始化内容懒加载
+            if ('IntersectionObserver' in window) {
+                const lazySections = document.querySelectorAll('.lazy-section');
+                const lazyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            lazyObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {rootMargin: '200px'});
+                
+                lazySections.forEach(section => {
+                    lazyObserver.observe(section);
+                });
+            }
+            
+            // 延迟加载图片
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            if ('loading' in HTMLImageElement.prototype) {
+                // 浏览器支持原生懒加载
+                lazyImages.forEach(img => {
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                    // Ensure images inside examples also use relative paths if needed, or adjust their src directly
+                    if(img.src.includes('/images/examples/')) {
+                        img.src = img.src.replace('images/examples/', '../images/examples/');
+                    }
+                });
+            } else {
+                // 回退使用Intersection Observer
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                if (img.dataset.src) {
+                                    img.src = img.dataset.src;
+                                }
+                                // Ensure images inside examples also use relative paths if needed, or adjust their src directly
+                                if(img.src.includes('/images/examples/')) {
+                                    img.src = img.src.replace('images/examples/', '../images/examples/');
+                                }
+                                imageObserver.unobserve(img);
+                            }
+                        });
+                    });
+                    
+                    lazyImages.forEach(img => {
+                        imageObserver.observe(img);
+                    });
+                }
+            }
+        });
+    </script>
+
+    <!-- 使用defer属性延迟加载主脚本 -->
+    <script src="../script.js" defer></script>
 </body>
 </html> 
