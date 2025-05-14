@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Brat Text Generator,quickly create Brat text images. Customize with your own text, font,colors, and styling in seconds. Free and easy to use!">
     <title>Brat Text Generator - Free Online Charli XCX Text Maker</title>
-    <meta name="keywords" content="">
+    <meta name="keywords" content="brat text generator, brat generator text, bratgenerator text, brat text generator charli, brat text generator transparent, brat generator white text, brat textgenerator, brat text font generator, text generator brat">
     <link rel="canonical" href="https://www.brattextgenerator.org/">
+    <link rel="alternate" hreflang="en" href="https://www.brattextgenerator.org/" />
+    <link rel="alternate" hreflang="es" href="https://www.brattextgenerator.org/es/" />
+    <link rel="alternate" hreflang="fr" href="https://www.brattextgenerator.org/fr/" />
+    <link rel="alternate" hreflang="de" href="https://www.brattextgenerator.org/de/" />
+    <link rel="alternate" hreflang="ja" href="https://www.brattextgenerator.org/ja/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.brattextgenerator.org/" />
     
     <!-- 预加载关键资源 -->
     <link rel="preload" href="styles.css" as="style">
@@ -406,6 +412,75 @@
                 color: #000;
             }
         }
+
+        /* Language Selector Styles */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            margin-left: 1rem; /* Add some space from other nav items */
+        }
+
+        .language-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 2001; /* Ensure it's above other nav elements */
+            right: 0; 
+        }
+
+        .language-dropdown-content a {
+            color: black;
+            padding: 10px 14px; /* Adjusted padding */
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem; /* Slightly smaller font */
+        }
+
+        .language-dropdown-content a:hover {background-color: #f1f1f1;}
+
+        .language-selector.active .language-dropdown-content {
+            display: block;
+        }
+
+        #languageSelectorButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #222222; /* Match other nav links */
+            font-weight: 500; /* Match other nav links */
+            font-size: 1rem; /* Match other nav links */
+            padding: 0.3rem 0.5rem; /* Match other nav links */
+        }
+        #languageSelectorButton:hover {
+            color: #8AE403; /* Highlight on hover */
+        }
+        #languageSelectorButton i {
+            margin-left: 5px;
+            font-size: 0.8rem; /* Adjust icon size */
+        }
+
+        /* Responsive adjustments for language selector */
+        @media (max-width: 768px) {
+            .language-selector {
+                margin-left: 0;
+                width: 100%; /* Make it full width in mobile menu */
+                margin-top: 0.5rem;
+            }
+            #languageSelectorButton {
+                width: 100%;
+                justify-content: space-between; /* Align text and icon nicely */
+                padding: 0.8rem 1rem; /* Adjust padding for mobile */
+            }
+            .language-dropdown-content {
+                position: static; /* Adjust for mobile menu flow */
+                box-shadow: none;
+                border-top: 1px solid #eee;
+            }
+        }
     </style>
     
     <!-- 优化导航脚本 -->
@@ -444,6 +519,22 @@
             // 监听scroll和resize事件使用passive参数提高性能
             window.addEventListener('scroll', ensureNavVisible, {passive: true});
             window.addEventListener('resize', ensureNavVisible, {passive: true});
+
+            // Language selector toggle
+            const langButton = document.getElementById('languageSelectorButton');
+            const langDropdown = document.getElementById('languageDropdown');
+            if(langButton && langDropdown) {
+                langButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    document.querySelector('.language-selector').classList.toggle('active');
+                });
+                // Close dropdown if clicked outside
+                document.addEventListener('click', function(event) {
+                    if (!langButton.contains(event.target) && !langDropdown.contains(event.target)) {
+                        document.querySelector('.language-selector').classList.remove('active');
+                    }
+                });
+            }
         });
         
         // 预初始化导航
@@ -473,6 +564,16 @@
                 <a href="#user-examples" class="nav-link">User Examples</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#" class="nav-link nav-highlight">Get Started</a>
+            </div>
+            <div class="language-selector">
+                <button id="languageSelectorButton" class="nav-link">Language <i class="bi bi-chevron-down"></i></button>
+                <div id="languageDropdown" class="language-dropdown-content">
+                    <a href="/" data-lang="en">English</a>
+                    <a href="/es/" data-lang="es">Español</a>
+                    <a href="/fr/" data-lang="fr">Français</a>
+                    <a href="/de/" data-lang="de">Deutsch</a>
+                    <a href="/ja/" data-lang="ja">日本語</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -822,7 +923,7 @@
                 <div class="examples-container">
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example1.png" alt="User created 'very brat summer' text design with green background and black font" loading="lazy">
+                            <img src="images/examples/example1.png" alt="User created 'very brat summer' text design with green background and black font" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Summer Theme</h3>
@@ -832,7 +933,7 @@
                     
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example2.png" alt="User created 'aesthetic' text design with pink background and white font with blur effect" loading="lazy">
+                            <img src="images/examples/example2.png" alt="User created 'aesthetic' text design with pink background and white font with blur effect" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Pink Aesthetic</h3>
@@ -842,7 +943,7 @@
                     
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example3.png" alt="User created 'digital future' text design with blue background and glow effect" loading="lazy">
+                            <img src="images/examples/example3.png" alt="User created 'digital future' text design with blue background and glow effect" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Digital Future</h3>
@@ -852,7 +953,7 @@
                     
                     <div class="example-card">
                         <div class="example-image">
-                            <img src="example4.png" alt="User created multilingual text design with classic green background" loading="lazy">
+                            <img src="images/examples/example4.png" alt="User created multilingual text design with classic green background" loading="lazy">
                         </div>
                         <div class="example-info">
                             <h3>Multilingual Design</h3>
