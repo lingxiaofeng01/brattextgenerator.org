@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ262YJ44H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZ262YJ44H');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brat文本生成器 | 在线创建自定义Brat风格文字图片</title>
+    <meta name="description" content="免费Brat文本生成器，灵感来自Charli XCX。创建带有透明背景、白色文字选项或自定义颜色的brat风格文字图片。立即生成brat文字字体设计。">
+    <meta name="keywords" content="brat文本生成器,brat生成器,brat文字生成器,charli brat文本生成器,brat透明文本生成器,白色brat文本生成器,brat字体生成器">
+    <link rel="canonical" href="https://www.brattextgenerator.org/zh/">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* 内联样式确保导航可见 */
+        .main-nav {
+            display: block !important;
+            visibility: visible !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 2000;
+            padding: 0.8rem 0;
+        }
+        .nav-container {
+            display: flex !important;
+            visibility: visible !important;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .logo {
+            display: block !important;
+            visibility: visible !important;
+        }
+        .logo a {
+            display: flex !important;
+            visibility: visible !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #222222;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex !important;
+            visibility: visible !important;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .nav-link {
+            color: #222222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.3rem 0.5rem;
+        }
+        .nav-highlight {
+            background-color: #8AE403;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none !important;
+            }
+            .nav-links.active {
+                display: flex !important;
+            }
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#top">
+                    <span class="logo-text">Brat</span>
+                    <span class="logo-accent">Generator</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#how-to-use" class="nav-link">使用指南</a>
+                <a href="#features" class="nav-link">亮点特色</a>
+                <a href="#user-examples" class="nav-link">用户作品</a>
+                <a href="#faq" class="nav-link">常见问题</a>
+                <a href="#" class="nav-link nav-highlight">立即使用</a>
+                <div class="language-switch">
+                    <span class="active-lang">中文</span>
+                    <a href="../" class="lang-option">EN</a>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- 顶部说明文字 -->
+            <div class="intro-section">
+                <h1 class="main-title">最佳免费在线Brat文本生成器</h1>
+                <p class="lead-text">支持透明背景、白色文字选项和自定义颜色。完美适用于社交媒体、个人头像和创意设计。</p>
+            </div>
+
+            <!-- 特色区域 -->
+            <div class="feature-highlight-section">
+                <div class="feature-item">
+                    <h3>原汁原味的Brat风格</h3>
+                    <p>- 忠于Charli XCX专辑美学</p>
+                </div>
+                <div class="feature-item">
+                    <h3>多种导出选项</h3>
+                    <p>- 支持PNG、JPG或SVG格式下载</p>
+                </div>
+                <div class="feature-item">
+                    <h3>透明背景支持</h3>
+                    <p>- 完美适用于叠加和设计</p>
+                </div>
+                <div class="feature-item">
+                    <h3>白色文字选项</h3>
+                    <p>- 创建醒目的绿底白字Brat文本</p>
+                </div>
+                <div class="feature-item">
+                    <h3>自定义文字颜色</h3>
+                    <p>- 表达您独特的风格</p>
+                </div>
+                <div class="feature-item">
+                    <h3>可调节模糊效果</h3>
+                    <p>- 精细调整标志性Brat模糊</p>
+                </div>
+            </div>
+
+            <div class="usage-description">
+                <p>创建独特的<strong>Brat文字字体</strong>设计，适用于您的社交媒体、个人头像、商品或任何创意项目，使用我们简单易用的<strong>文本生成器工具</strong>。</p>
+            </div>
+
+            <!-- 热门搜索区域 -->
+            <div class="popular-searches">
+                <h3>热门搜索</h3>
+                <div class="search-tags">
+                    <span class="search-tag">brat text generator</span>
+                    <span class="search-tag">brat文本生成器</span>
+                    <span class="search-tag">brat生成器</span>
+                    <span class="search-tag">brat文字生成</span>
+                    <span class="search-tag">brat透明背景生成器</span>
+                    <span class="search-tag">brat白色文字生成器</span>
+                    <span class="search-tag">brat字体生成器</span>
+                    <span class="search-tag">text generator brat</span>
+                </div>
+            </div>
+
+            <!-- 顶部广告横幅 -->
+            <div class="top-ad-banner">
+                <div class="ad-content">
+                    <p>使用我们的高级工具创建更精美的文本设计</p>
+                    <a href="#" class="ad-button">尝试高级版</a>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <!-- 左侧控制面板 -->
+            <div class="left-panel">
+                <div class="controls">
+                    <div class="control-section">
+                        <h2>文本设置</h2>
+                        <div class="control-group">
+                            <label for="text-input">输入文本</label>
+                            <textarea id="text-input" placeholder="输入你想要的文本..." rows="3">Input Some Text To Generate Your Custom Brat Cover</textarea>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="font-size">字体大小</label>
+                            <div class="slider-container">
+                                <input type="range" id="font-size" min="20" max="200" value="40">
+                                <span id="font-size-value">40px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-shadow">文本阴影</label>
+                            <div class="slider-container">
+                                <input type="range" id="text-shadow" min="0" max="20" value="0">
+                                <span id="text-shadow-value">0px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-color">文本颜色</label>
+                            <input type="color" id="text-color" value="#000000">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="text-align">文本布局</label>
+                            <div class="button-group">
+                                <button id="align-left" title="左对齐"><i class="bi bi-text-left"></i></button>
+                                <button id="align-center" class="active" title="居中对齐"><i class="bi bi-text-center"></i></button>
+                                <button id="align-right" title="右对齐"><i class="bi bi-text-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <div class="text-transform-options">
+                                <button id="text-mirror" title="水平镜像"><i class="bi bi-symmetry-horizontal"></i></button>
+                                <button id="text-flip" title="垂直翻转"><i class="bi bi-symmetry-vertical"></i></button>
+                                <button id="text-rotate" title="旋转文本"><i class="bi bi-arrow-clockwise"></i></button>
+                                <button id="text-uppercase" title="大写"><i class="bi bi-type"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h2>背景设置</h2>
+                        <div class="control-group">
+                            <label for="bg-color">背景颜色</label>
+                            <input type="color" id="bg-color" value="#8AE403">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>预设风格</label>
+                            <div class="preset-container">
+                                <button class="preset preset-green active" title="经典绿色"></button>
+                                <button class="preset preset-white" title="白色"></button>
+                                <button class="preset preset-pink" title="粉色"></button>
+                                <button class="preset preset-blue" title="蓝色"></button>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="blur-effect">模糊效果</label>
+                            <div class="slider-container">
+                                <input type="range" id="blur-effect" min="0" max="10" value="1.5" step="0.1">
+                                <span id="blur-effect-value">1.5px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="border-radius">边框圆角</label>
+                            <div class="slider-container">
+                                <input type="range" id="border-radius" min="0" max="50" value="0">
+                                <span id="border-radius-value">0px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="canvas-width">画布尺寸</label>
+                            <div class="size-inputs">
+                                <div class="size-input">
+                                    <span>宽</span>
+                                    <input type="number" id="canvas-width" value="594" min="100" max="2000">
+                                </div>
+                                <div class="size-input">
+                                    <span>高</span>
+                                    <input type="number" id="canvas-height" value="594" min="100" max="2000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <div class="action-buttons">
+                            <button id="reset-button" class="secondary-button">
+                                <i class="bi bi-arrow-counterclockwise"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧预览和下载区域 -->
+            <div class="right-panel">
+                <div class="preview-wrapper">
+                    <div class="preview" id="preview-panel">
+                        <div id="text-preview">Input Some Text To Generate Your Custom Brat Cover</div>
+                    </div>
+                </div>
+                
+                <div class="preview-controls">
+                    <button id="zoom-out" title="缩小"><i class="bi bi-zoom-out"></i></button>
+                    <span id="zoom-level">100%</span>
+                    <button id="zoom-in" title="放大"><i class="bi bi-zoom-in"></i></button>
+                    <button id="zoom-reset" title="重置缩放"><i class="bi bi-arrows-fullscreen"></i></button>
+                </div>
+
+                <div class="download-options">
+                    <p class="download-title">下载图片</p>
+                    <div class="download-buttons">
+                        <button id="download-png" class="download-button">
+                            <i class="bi bi-file-earmark-image"></i> PNG
+                        </button>
+                        <button id="download-jpg" class="download-button">
+                            <i class="bi bi-file-earmark"></i> JPG
+                        </button>
+                        <button id="download-svg" class="download-button">
+                            <i class="bi bi-file-earmark-code"></i> SVG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="section-container">
+            <!-- 使用介绍部分 -->
+            <section class="how-to-section" id="how-to-use">
+                <h2>如何使用 Brat Text Generator</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>输入文本</h3>
+                            <p>在输入框中填写您想要展示的文本内容。可以是任何您想表达的语句或创意文字。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>调整样式</h3>
+                            <p>选择文本颜色、背景颜色、字体大小等参数，使用预设风格或创建您独特的风格。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>应用特效</h3>
+                            <p>尝试模糊效果、文本旋转、镜像、翻转等特效，让您的文本更具视觉冲击力。</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>下载图像</h3>
+                            <p>选择您喜欢的格式（PNG、JPG或SVG）下载生成的图像，分享到社交媒体或用于您的创作。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 亮点特色部分 -->
+            <section class="features-section" id="features">
+                <h2>亮点特色</h2>
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <h3>即时预览</h3>
+                        <p>实时查看您的设计效果，所有调整都能立即在预览区域看到，无需等待刷新或加载。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-download"></i>
+                        </div>
+                        <h3>多格式导出</h3>
+                        <p>支持PNG、JPG和SVG三种格式导出，满足不同场景的需求，高质量保存您的创作成果。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-palette-fill"></i>
+                        </div>
+                        <h3>丰富样式选项</h3>
+                        <p>提供多种预设风格和全面的自定义选项，调整文字大小、颜色、模糊度，打造专属视觉效果。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h3>移动端友好</h3>
+                        <p>完美适配各种设备，无论是在电脑、平板还是手机上，都能流畅使用所有功能。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 灵感来源部分 -->
+            <section class="inspiration-section">
+                <div class="inspiration-content">
+                    <div class="inspiration-text">
+                        <h2>Brat 风格灵感</h2>
+                        <p>Brat风格源自Charli XCX的专辑封面设计，以鲜艳的绿色、大胆的文字和略带模糊的效果为特点。这种简约而富有冲击力的设计风格，已经成为当代流行文化的标志性元素之一。</p>
+                        <p>使用我们的生成器，您可以轻松创建符合这一审美的文本图像，为您的社交媒体、个人项目或创意设计增添时尚感。</p>
+                    </div>
+                    <div class="inspiration-image">
+                        <div class="example-preview">
+                            <span>brat style</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ部分 -->
+            <section class="faq-section" id="faq">
+                <h2>常见问题解答</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>什么是"Brat"风格？它的起源是什么？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>"Brat"风格源自英国歌手Charli XCX的同名专辑封面设计，于2023年发布。这种风格特点是使用亮眼的荧光绿背景、简约的黑色文字和轻微的模糊效果，在社交媒体上迅速走红并形成了独特的文化现象。这种美学风格因其简约而富有冲击力的视觉效果，被广泛用于各种创意设计中。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>我可以使用生成的图像做什么？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>您可以将生成的图像用于个人用途，包括社交媒体发布、个人项目或非商业创作。它们非常适合Instagram故事、Twitter封面、个人博客插图或朋友间分享的有趣内容。如需商业用途，请确保您拥有相关字体和设计元素的使用权。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>为什么我的文本看起来模糊？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>模糊效果是Brat风格的核心特点之一，它赋予图像独特的美学感受。您可以通过调整"模糊效果"滑块来减少或增加模糊程度，从0（无模糊）到10（高度模糊）。最经典的Brat风格通常使用约1.5px的轻微模糊效果，但您可以根据自己的创意自由调整。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>如何为长文本创建最佳效果？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>对于较长的文本，系统会自动调整字体大小以确保文本适合画布。但为获得最佳效果，我们建议：1) 保持文本简短精炼，通常20-30个字符效果最佳；2) 对于必须使用的长文本，可以减小字体大小并增加画布尺寸；3) 考虑将长句拆分为多行，使用回车创建换行；4) 尝试不同的对齐方式，有时左对齐或右对齐比居中更适合长文本。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>我可以使用中文或其他非英文字符吗？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>是的，本工具完全支持中文、日文、韩文以及其他语言字符。不过请注意，由于不同语言字符的宽高比可能不同，您可能需要调整字体大小或画布尺寸以获得最佳效果。某些特殊符号和表情符号也可能需要额外调整才能正确显示。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>我可以在移动设备上使用这个工具吗？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>是的，Brat Text Generator完全支持移动设备。界面会自动适应您的屏幕大小，所有功能在手机和平板电脑上都可正常使用。在移动设备上，您可以轻松调整所有参数、预览效果并直接下载图像到您的设备相册中，非常适合随时随地创作分享。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>如何创建更大尺寸的图像？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>在"背景设置"区域，您可以通过"画布尺寸"选项自定义图像的宽度和高度，最大支持2000×2000像素的图像。对于高分辨率设备或打印需求，建议使用至少1200×1200像素的尺寸。请注意，增加画布尺寸后，您可能需要相应调整字体大小，以保持文本在更大画布上的视觉平衡。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>哪种格式最适合分享到社交媒体？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>不同用途推荐不同格式：<br>
+                            - <strong>PNG格式</strong>：最通用的选择，保持高质量和清晰度，适合Instagram、Twitter等大多数平台。<br>
+                            - <strong>JPG格式</strong>：文件更小，适合网络加载速度要求高的场景，如微信朋友圈或网站背景。<br>
+                            - <strong>SVG格式</strong>：矢量格式，可无损放大，适合需要后续编辑的设计师或印刷品。SVG在某些社交平台可能不受支持，但对网页设计和专业图像编辑非常有用。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>如何添加自定义字体或上传我自己的背景？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>当前版本专注于提供原汁原味的Brat风格，使用固定字体以保证风格一致性。如需使用自定义字体或背景，您可以先使用我们的工具生成基础图像，然后在Photoshop、GIMP或Canva等图像编辑软件中进一步自定义。我们正在考虑在未来版本中添加更多自定义选项，包括字体选择和背景图片上传功能。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>生成的图像会保存在您的服务器上吗？</h3>
+                            <span class="faq-toggle"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>不会。所有图像处理完全在您的浏览器中本地进行，我们不会在服务器上存储您生成的任何图像或输入的文本内容。当您点击下载按钮时，图像直接保存到您的设备上，整个过程中不会上传任何内容到我们的服务器，确保您的创作内容完全私密。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 用户创作展示区块 -->
+            <section class="user-examples-section" id="user-examples">
+                <h2>用户创作展示</h2>
+                <p class="section-description">查看社区用户使用Brat文本生成器创建的精彩作品，获取灵感，展示你的创意。</p>
+                
+                <div class="examples-container">
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="../images/examples/example1.png" alt="用户创建的'very brat summer'文字设计，绿色背景黑色字体" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>夏日主题</h3>
+                            <p>绿色背景配合黑色文字，完美呈现夏日氛围</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="../images/examples/example2.png" alt="用户创建的'aesthetic'文字设计，粉色背景白色字体带模糊效果" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>粉色美学</h3>
+                            <p>柔和的粉色背景搭配白色字体，增强模糊效果</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="../images/examples/example3.png" alt="用户创建的'digital future'文字设计，蓝色背景带发光效果" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>数字未来</h3>
+                            <p>深蓝背景与大胆字体结合，展现未来科技感</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="example-image">
+                            <img src="../images/examples/example4.png" alt="用户创建的'我的生活'中文文字设计，经典绿色背景" loading="lazy">
+                        </div>
+                        <div class="example-info">
+                            <h3>中文设计</h3>
+                            <p>展示多语言支持，经典绿色背景搭配中文字体</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="user-submission">
+                    <h3>分享你的创作</h3>
+                    <p>创建你自己的Brat风格文字，并通过社交媒体标签 #BratTextGenerator 与我们分享！</p>
+                    <a href="#" class="submission-button">开始创作</a>
+                </div>
+            </section>
+        </div>
+
+        <section class="seo-section">
+            <div class="seo-container">
+                <div class="seo-content">
+                    <h2>最佳免费在线Brat文本生成器</h2>
+                    <p>我们的<strong>Brat文本生成器</strong>是创建Charli XCX风格文本的首选工具。无论您需要<strong>透明背景文本</strong>、绿底<strong>白色文本</strong>，还是自定义颜色文本，我们的<strong>brat生成器</strong>工具都能即时提供高质量的效果。</p>
+                    
+                    <h3>为什么选择我们的Brat文本生成器？</h3>
+                    <ul class="seo-features">
+                        <li><strong>原汁原味的Brat风格</strong> - 忠于Charli XCX专辑美学</li>
+                        <li><strong>多种导出选项</strong> - 支持PNG、JPG或SVG格式下载</li>
+                        <li><strong>透明背景支持</strong> - 完美适用于叠加和设计</li>
+                        <li><strong>白色文字选项</strong> - 创建醒目的绿底白字Brat文本</li>
+                        <li><strong>自定义文字颜色</strong> - 表达您独特的风格</li>
+                        <li><strong>可调节模糊效果</strong> - 精细调整标志性Brat模糊</li>
+                    </ul>
+                    
+                    <p>创建独特的<strong>Brat文字字体</strong>设计，适用于您的社交媒体、个人头像、商品或任何创意项目，使用我们简单易用的<strong>文本生成器工具</strong>。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>&copy; 2023 BratTextGenerator. 保留所有权利。</p>
+                </div>
+                <div class="terms">
+                    <a href="#" class="footer-link">隐私政策</a>
+                    <a href="#" class="footer-link">使用条款</a>
+                    <a href="#user-examples" class="footer-link">用户作品</a>
+                    <a href="#" class="footer-link">联系我们</a>
+                    <a href="https://www.bratgeneratorfree.com/" target="_blank" rel="noopener" class="footer-link">Brat Generator</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://twitter.com/intent/tweet?text=推荐这款超赞的Brat文本生成器!&url=https://www.brattextgenerator.org/zh" target="_blank" rel="noopener noreferrer nofollow" title="分享到Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://service.weibo.com/share/share.php?url=https://www.brattextgenerator.org/zh&title=推荐这款超赞的Brat文本生成器!" target="_blank" rel="noopener noreferrer nofollow" title="分享到微博"><i class="bi bi-sina-weibo"></i></a>
+                    <a href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.brattextgenerator.org/zh&title=Brat文本生成器&summary=推荐这款超赞的Brat文本生成器!" target="_blank" rel="noopener noreferrer nofollow" title="分享到QQ"><i class="bi bi-tencent-qq"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.brattextgenerator.org/zh" target="_blank" rel="noopener noreferrer nofollow" title="分享到Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.brattextgenerator.org/zh&title=Brat文本生成器" target="_blank" rel="noopener noreferrer nofollow" title="分享到LinkedIn"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="bi bi-x-lg"></i>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#how-to-use" class="mobile-link">使用指南</a>
+            <a href="#features" class="mobile-link">亮点特色</a>
+            <a href="#user-examples" class="mobile-link">用户作品</a>
+            <a href="#faq" class="mobile-link">常见问题</a>
+            <a href="#" class="mobile-link highlight">立即使用</a>
+            <div class="mobile-language">
+                <span class="active-lang">中文</span>
+                <a href="../" class="lang-option">EN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除底部导航栏的脚本 -->
+    <script>
+        // 在DOM加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 查找并删除底部导航栏（通过内容识别）
+            const allElements = document.getElementsByTagName('*');
+            for (let i = 0; i < allElements.length; i++) {
+                const el = allElements[i];
+                // 检查元素及其子元素是否包含与底部导航栏相似的文本
+                if (el.innerText && 
+                    ((el.innerText.includes('How to Use') && el.innerText.includes('Features') && 
+                      el.innerText.includes('FAQ') && el.innerText.includes('Get Started')) ||
+                     (el.innerText.includes('使用指南') && el.innerText.includes('亮点特色') && 
+                      el.innerText.includes('常见问题') && el.innerText.includes('立即使用'))) &&
+                    (el.style.position === 'fixed' || el.style.position === 'sticky' || 
+                     getComputedStyle(el).position === 'fixed' || getComputedStyle(el).position === 'sticky')) {
+                    // 如果找到匹配的元素，并且是固定或粘性定位的，则删除它
+                    el.remove();
+                    console.log('底部导航栏已删除');
+                }
+            }
+            
+            // 移除图片中显示的底部导航栏
+            const fixedBottomBar = document.querySelector('div[style*="position:fixed"][style*="bottom:0"], div[style*="position: fixed"][style*="bottom: 0"]');
+            if (fixedBottomBar) {
+                fixedBottomBar.remove();
+                console.log('固定底部导航栏已删除');
+            }
+            
+            // 删除红框中的导航链接（通常是浏览器或第三方插件添加的）
+            const navLinks = document.querySelectorAll('a[href*="How to Use"], a[href*="Features"], a[href*="FAQ"], a[href*="Get Started"], a[href*="使用指南"], a[href*="亮点特色"], a[href*="常见问题"], a[href*="立即使用"]');
+            navLinks.forEach(link => {
+                // 检查是否是页脚以外的链接
+                const isInFooter = link.closest('footer') !== null;
+                const isInMainNav = link.closest('.main-nav') !== null || link.closest('.nav-links') !== null;
+                
+                if (!isInFooter && !isInMainNav) {
+                    const parent = link.parentElement;
+                    if (parent && parent.children.length <= 4) {
+                        parent.remove(); // 如果父元素只包含少量元素，可能是导航栏，整个删除
+                        console.log('导航链接父元素已删除');
+                    } else {
+                        link.remove(); // 否则只删除链接
+                        console.log('单个导航链接已删除');
+                    }
+                }
+            });
+            
+            // 特别移除红框中的底部导航栏(通常仅包含链接文本)
+            const bottomLinkContainers = document.querySelectorAll('div:not(.nav-links):not(.mobile-menu-links)');
+            bottomLinkContainers.forEach(container => {
+                if (container.innerText && 
+                   ((container.innerText.includes('How to Use') && 
+                     container.innerText.includes('Features') && 
+                     container.innerText.includes('FAQ') && 
+                     container.innerText.includes('Get Started')) ||
+                    (container.innerText.includes('使用指南') && 
+                     container.innerText.includes('亮点特色') && 
+                     container.innerText.includes('常见问题') && 
+                     container.innerText.includes('立即使用'))) &&
+                    container.children.length <= 4) {
+                    container.remove();
+                    console.log('底部链接容器已删除');
+                }
+            });
+            
+            // 额外尝试移除图片中红框的底部导航栏
+            // 检查所有的底部元素
+            const allDivs = document.querySelectorAll('div');
+            allDivs.forEach(div => {
+                // 只检查在页面底部的元素
+                const rect = div.getBoundingClientRect();
+                const isNearBottom = rect.bottom > window.innerHeight - 100 && rect.bottom <= window.innerHeight;
+                
+                if (isNearBottom) {
+                    // 检查是否包含类似导航的内容
+                    const text = div.innerText || '';
+                    if ((text.includes('How to Use') && text.includes('Features') && 
+                         text.includes('FAQ') && text.includes('Get Started')) ||
+                        (text.includes('使用指南') && text.includes('亮点特色') && 
+                         text.includes('常见问题') && text.includes('立即使用'))) {
+                        div.remove();
+                        console.log('通过位置识别的底部导航栏已删除');
+                    }
+                }
+            });
+            
+            // 直接尝试查找包含特定文本模式的链接组
+            const linkGroups = document.querySelectorAll('div, nav, section');
+            linkGroups.forEach(group => {
+                const text = group.innerText || '';
+                const enLinksPattern = /How to Use\s*Features\s*FAQ\s*Get Started/i;
+                const zhLinksPattern = /使用指南\s*亮点特色\s*常见问题\s*立即使用/i;
+                if (enLinksPattern.test(text) || zhLinksPattern.test(text)) {
+                    // 确保这不是主导航
+                    if (!group.classList.contains('nav-links') && 
+                        !group.classList.contains('main-nav') && 
+                        !group.closest('.main-nav')) {
+                        group.remove();
+                        console.log('通过文本模式匹配的导航组已删除');
+                    }
+                }
+            });
+            
+            // 检查独立的红框问题
+            setTimeout(function() {
+                const redBox = document.querySelector('div[style*="border:1px solid red"], div[style*="border: 1px solid red"], div[style*="border:1px solid #ff0000"], div[style*="border: 1px solid #ff0000"]');
+                if (redBox) {
+                    redBox.remove();
+                    console.log('红框已删除');
+                }
+            }, 500);
+        });
+    </script>
+
+    <script src="../script.js"></script>
+    <script>
+        // 确保header元素可见
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.display = 'block';
+                header.style.visibility = 'visible';
+            }
+        });
+    </script>
+</body>
+</html> 
